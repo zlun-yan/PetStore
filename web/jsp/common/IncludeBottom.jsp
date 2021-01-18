@@ -5,8 +5,6 @@
   Time: 9:58
   To change this template use File | Settings | File Templates.
 --%>
-</div>
-
         <div class="position-relative js-header-wrapper ">
             <footer class="footer mt-6">
                 <div class="bg-gray-light">
