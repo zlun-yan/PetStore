@@ -12,6 +12,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+
     <title>PetStore</title>
 </head>
 
@@ -36,11 +37,10 @@
             <a href="#" class="Header-link">About</a>
         </div>
 
-        <div class="Header-item">
-            <input type="search" class="form-control input-dark" />
-        </div>
-        <div class="Header-item Header-item--full">
-            Menu
+        <div class="Header-item" style="float: right;">
+
+<%--            在选择框这里可以加一个select 这个可以在forms里面找到--%>
+            <input type="search" class="form-control input-dark" style="float: right;"/>
         </div>
     </div>
 
