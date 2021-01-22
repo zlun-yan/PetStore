@@ -31,31 +31,48 @@
     </div>
 
     <div class="container-sm">
-        <div class="mb-4">
-
-
-            <form id="signup-form" action="reset" accept-charset="UTF-8" method="post">
-                <!-- <dl class="form-group my-3 successed"> -->
-                <dl class="form-group my-3">
-                    <dt class="input-label">
-                        <label name="user[email]" for="user_email">
-                            Enter your user account's verified email address and we will send you a password reset link.
-                        </label>
-                    </dt>
-                    <dd>
-                        <input name="user[email]" required="required" class="form-control input width-full" type="text" id="user_email"
-                               placeholder="Enter your email address"/>
-                    </dd>
-                    <!-- <dd>
-                        <p class="note success" id="username-input-validation">monalisa is available</p>
-                    </dd> -->
-                </dl>
-
-                <div class="my-3">
-                    <input type="submit" name="commit" value="Send password reset email" class="btn btn-primary btn-block"/>
+        <div class="mb-3" id="errorBox" style="display: none">
+            <div class="flash flash-full flash-error" style="border-width: 1px; border-radius: 6px">
+                <div class="container-lg px-2" >
+                    <button class="flash-close js-flash-close" type="button" aria-label="Dismiss this message" id="error_button">
+                        <svg class="octicon octicon-x" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                        </svg>
+                    </button>
+                    <p id="info">
+                        That address is not a <a href=''>verified primary email</a> or is not associated with a <a href=''>personal user account</a>. Organization <a href=''>billing emails</a> are only for notifications
+                    </p>
                 </div>
-            </form>
+            </div>
         </div>
+
+
+        <div class="Box">
+            <div class="Box-header">
+                <div class="mb-4">
+
+
+                    <form id="signup-form" action="reset" accept-charset="UTF-8" method="post">
+                        <dl class="form-group my-3">
+                            <dt class="input-label">
+                                <label name="user[email]" for="user_email">
+                                    Enter your user account's verified email address and we will send you a password reset link.
+                                </label>
+                            </dt>
+                            <dd>
+                                <input name="user[email]" required="required" class="form-control input width-full" style="background-color: white" type="text" id="user_email"
+                                       placeholder="Enter your email address"/>
+                            </dd>
+                        </dl>
+
+                        <div class="my-3">
+                            <input type="submit" name="commit" value="Send password reset email" class="btn btn-primary btn-block"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="footer container-lg p-responsive py-6 mt-6 f6" role="contentinfo">
@@ -69,7 +86,7 @@
 </div>
 
 
-
+<script src="static/js/account/password.js"></script>
 </body>
 </html>
 

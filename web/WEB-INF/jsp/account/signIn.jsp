@@ -30,44 +30,58 @@
         </div>
     </div>
 
+
+
     <div class="container-sm">
-        <div class="mb-4">
-
-
-            <form id="signup-form" action="" accept-charset="UTF-8" method="post">
-                <!-- <dl class="form-group my-3 successed"> -->
-                <dl class="form-group my-3">
-                    <dt class="input-label">
-                        <label name="user[login]" for="user_login">Username or email address</label>
-                    </dt>
-                    <dd>
-                        <input name="user[login]" required="required" class="form-control input width-full" type="text" id="user_login" />
-                    </dd>
-                    <dd>
-                        <p class="note success" id="username-input-validation">monalisa is available</p>
-                    </dd>
-                </dl>
-
-                <dl class="form-group mt-3 mb-2">
-                    <dt>
-                        <label name="user[password]" for="user_password">Password</label>
-                        <a href="password_reset" style="float: right;">Forgot password?</a>
-                    </dt>
-                    <dd>
-                        <input name="user[password]" required="required" class="form-control input width-full" type="password" id="user_password" />
-                    </dd>
-                </dl>
-
-                <div class="my-3">
-                    <input type="submit" name="commit" value="Sign in" class="btn btn-primary btn-block" data-disable-with="Signing in…" />
+        <div class="mb-3" id="errorBox" style="display: none">
+            <div class="flash flash-full flash-error" style="border-width: 1px; border-radius: 6px">
+                <div class="container-lg px-2" >
+                    <button class="flash-close js-flash-close" type="button" aria-label="Dismiss this message" id="error_button">
+                        <svg class="octicon octicon-x" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                        </svg>
+                    </button>
+                    <p id="info">Incorrect username or password.</p>
+                    That address is not a <a href='https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/changing-your-primary-email-address'>verified primary email</a> or is not associated with a <a href='https://docs.github.com/en/github/getting-started-with-github/types-of-github-accounts'>personal user account</a>. Organization <a href='https://docs.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/setting-your-billing-email'>billing emails</a> are only for notifications
                 </div>
-            </form>
+            </div>
+        </div>
 
+        <div class="Box">
+            <div class="Box-header">
+                <div class="mb-4">
+                    <form id="signup-form" action="" accept-charset="UTF-8" method="post">
+                        <dl class="form-group my-3" id="user_login_input">
+                            <dt class="input-label">
+                                <label name="user[login]" for="user_login">Username or email address</label>
+                            </dt>
+                            <dd>
+                                <input name="user[login]" required="required" class="form-control input width-full" style="background-color: white" type="text" id="user_login" />
+                            </dd>
+                        </dl>
 
-            <p>
-                New to JPetStore?
-                <a href="signUp">Create an account</a>.
-            </p>
+                        <dl class="form-group mt-3 mb-2">
+                            <dt>
+                                <label name="user[password]" for="user_password">Password</label>
+                                <a href="password_reset" style="float: right;">Forgot password?</a>
+                            </dt>
+                            <dd>
+                                <input name="user[password]" required="required" class="form-control input width-full" style="background-color: white" type="password" id="user_password" />
+                            </dd>
+                        </dl>
+
+                        <div class="my-3">
+                            <input type="submit" name="commit" value="Sign in" class="btn btn-primary btn-block" id="submitButton"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="Box-row">
+                <p>
+                    New to JPetStore?
+                    <a href="signUp">Create an account</a>.
+                </p>
+            </div>
         </div>
     </div>
 
@@ -83,6 +97,7 @@
 
 
 
+<script src="static/js/account/signIn.js"></script>
 </body>
 </html>
 
