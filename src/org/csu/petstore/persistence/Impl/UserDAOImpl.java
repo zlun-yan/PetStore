@@ -18,6 +18,8 @@ public class UserDAOImpl implements UserDAO {
             "SELECT ID, USERNAME, EMAIL, PASSWORD, PROFILE_PIC, ADDRESS_NUM " +
                     "FROM USERS " +
                     "WHERE EMAIL = ?";
+    private static final String UPDATE_PASSWORD_BY_EMAIL =
+            "UPDATE USERS SET PASSWORD = ? WHERE USERNAME = ?";
 
     @Override
     public User getUserByUsername(String username) {
@@ -77,5 +79,26 @@ public class UserDAOImpl implements UserDAO {
             DBUtil.close(resultSet, preparedStatement, connection);
         }
         return null;
+    }
+
+    @Override
+    public boolean updatePasswordByUsername(String username, String password) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(UPDATE_PASSWORD_BY_EMAIL);
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, username);
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(null, preparedStatement, connection);
+        }
+
+        return false;
     }
 }

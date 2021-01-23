@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @WebServlet("/signInForm")
-public class signIn extends HttpServlet {
+public class SignIn extends HttpServlet {
     private UserDAO userDAO;
 
     @Override
@@ -61,6 +60,5 @@ public class signIn extends HttpServlet {
         }
 
         resp.getWriter().print(jsonObject.toJSONString());
-//        req.getRequestDispatcher("forgot").forward(req, resp);
     }
 }

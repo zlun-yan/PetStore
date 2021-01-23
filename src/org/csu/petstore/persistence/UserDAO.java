@@ -6,4 +6,6 @@ public interface UserDAO {
     User getUserByUsername(String username);
 
     User getUserByEmail(String email);
+
+    boolean updatePasswordByUsername(String username, String password);
 }

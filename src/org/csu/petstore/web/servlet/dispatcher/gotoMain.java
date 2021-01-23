@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/index")
-public class gotoHome extends HttpServlet {
-    private static final String HOME = "main.jsp";
+@WebServlet("/main")
+public class gotoMain extends HttpServlet {
+    private static final String MAIN = "/WEB-INF/jsp/main.jsp";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -18,6 +18,6 @@ public class gotoHome extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(HOME).forward(req, resp);
+        req.getRequestDispatcher(MAIN).forward(req, resp);
     }
 }

@@ -9,6 +9,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<%
+    session.setAttribute("boxState", "hide");
+%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -52,7 +55,7 @@
                 <div class="mb-4">
 
 
-                    <form id="signup-form" action="reset" accept-charset="UTF-8" method="post">
+                    <form id="signup-form" action="forgotForm" accept-charset="UTF-8" method="post">
                         <dl class="form-group my-3">
                             <dt class="input-label">
                                 <label name="user[email]" for="user_email">
@@ -86,7 +89,7 @@
 </div>
 
 
-<script src="static/js/account/password.js"></script>
+<script src="static/js/account/forgot.js"></script>
 </body>
 </html>
 

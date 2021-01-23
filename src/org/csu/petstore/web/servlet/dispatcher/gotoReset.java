@@ -1,5 +1,7 @@
 package org.csu.petstore.web.servlet.dispatcher;
 
+import org.csu.petstore.domain.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

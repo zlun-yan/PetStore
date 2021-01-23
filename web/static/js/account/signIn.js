@@ -1,7 +1,17 @@
 $(document).ready(function () {
+    var boxState = $("#boxState").val();
+    console.log(boxState);
+    if (boxState == "show") {
+        $("#noticeBox").show();
+    }
+    else {
+        $("#noticeBox").hide();
+    }
+
     $("#signup-form").on("submit", function (e) {
         e.preventDefault();
         $("#errorBox").hide();
+        $("#noticeBox").hide();
 
         $.ajax({
             type: "POST",
@@ -16,6 +26,8 @@ $(document).ready(function () {
                 var state = data["state"];
                 if (state == "correct") {
                     console.log("correct");
+
+                    window.location.href = "main";
                 }
                 else if (state == "psdwrong") {
                     console.log("password wrong");
@@ -45,5 +57,8 @@ $(document).ready(function () {
 
     $("#error_button").on("click", function () {
         $("#errorBox").hide();
+    })
+    $("#notice_button").on("click", function () {
+        $("#noticeBox").hide();
     })
 })

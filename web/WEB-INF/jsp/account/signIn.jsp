@@ -18,6 +18,8 @@
 </head>
 
 <body>
+<input type="hidden" value="${sessionScope.boxState}" id="boxState">
+
 <div class="p-responsive mt-4 mt-md-8">
     <div class="mb-4 mb-md-8 container-md text-center">
         <a class="header-logo" href="index" aria-label="Homepage">
@@ -33,6 +35,18 @@
 
 
     <div class="container-sm">
+        <div class="mb-3" id="noticeBox" style="display: none">
+            <div class="flash flash-full  flash-notice}" style="border-width: 1px; border-radius: 6px">
+                <div class="container-lg px-2" >
+                    <button class="flash-close js-flash-close" type="button" aria-label="Dismiss this message" id="notice_button">
+                        <svg class="octicon octicon-x" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                        </svg>
+                    </button>
+                    <p id="noticeInfo">New password set successfully.</p>
+                </div>
+            </div>
+        </div>
         <div class="mb-3" id="errorBox" style="display: none">
             <div class="flash flash-full flash-error" style="border-width: 1px; border-radius: 6px">
                 <div class="container-lg px-2" >

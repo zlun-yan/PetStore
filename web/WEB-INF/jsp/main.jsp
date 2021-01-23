@@ -5,6 +5,11 @@
   Time: 16:24
   To change this template use File | Settings | File Templates.
 --%>
+
+<%
+    session.setAttribute("boxState", "hide");
+%>
+
 <%@include file="common/IncludeTop.jsp"%>
 
 product
