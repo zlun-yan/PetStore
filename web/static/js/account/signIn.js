@@ -1,26 +1,49 @@
 $(document).ready(function () {
     $("#signup-form").on("submit", function (e) {
         e.preventDefault();
-        $("#submitButton").attr("value", "Signing in...").attr("disabled", "true");
+        $("#errorBox").hide();
 
-        var login = $("#user_login").val();
-        var password = $("#user_password").val();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "signInForm",
+            timeout: 2000,
+            data: $('#signup-form').serialize(),
+            beforeSend: function() {
+                $("#submitButton").attr("value", "Signing in...").attr("disabled", "true");
+            },
+            success: function (data) {
+                var state = data["state"];
+                if (state == "correct") {
+                    console.log("correct");
+                }
+                else if (state == "psdwrong") {
+                    console.log("password wrong");
 
-        var reg = /^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/; //正则表达式
-        if (!reg.test(login)) { //正则验证不通过，格式不对
-            alert("邮箱格式不正确！");
-        } else {
-            alert("邮箱格式正确！");
-        }
+                    $("#info").text("Incorrect password.");
+                    $("#errorBox").show();
+                    $("#submitButton").attr("value", "Sign in").removeAttr("disabled");
+                    $("#user_password").val("").focus();
+                }
+                else if (state == "namewrong") {
+                    console.log("username or email wrong");
 
-        // 这个下面是错误信息显示
-        $("#errorBox").show();
-        $("#user_password").val("").focus();
+                    $("#info").text("Incorrect username or email.");
+                    $("#errorBox").show();
+                    $("#submitButton").attr("value", "Sign in").removeAttr("disabled");
+                    $("#user_password").val("");
+                    $("#user_login").val("").focus();
+                }
+            },
+            error : function() {
+                $("#info").text("Error, please try again.");
+                $("#errorBox").show();
+                $("#submitButton").attr("value", "Sign in").removeAttr("disabled");
+            }
+        });
     })
 
     $("#error_button").on("click", function () {
         $("#errorBox").hide();
-        // 下面这个可以用来更改这个错误提示框显示的内容
-        $("#info").text("hello");
     })
 })

@@ -42,7 +42,6 @@
                         </svg>
                     </button>
                     <p id="info">Incorrect username or password.</p>
-                    That address is not a <a href='https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/changing-your-primary-email-address'>verified primary email</a> or is not associated with a <a href='https://docs.github.com/en/github/getting-started-with-github/types-of-github-accounts'>personal user account</a>. Organization <a href='https://docs.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/setting-your-billing-email'>billing emails</a> are only for notifications
                 </div>
             </div>
         </div>
@@ -50,7 +49,7 @@
         <div class="Box">
             <div class="Box-header">
                 <div class="mb-4">
-                    <form id="signup-form" action="" accept-charset="UTF-8" method="post">
+                    <form id="signup-form" action="signInForm" accept-charset="UTF-8" method="post">
                         <dl class="form-group my-3" id="user_login_input">
                             <dt class="input-label">
                                 <label name="user[login]" for="user_login">Username or email address</label>
@@ -63,7 +62,7 @@
                         <dl class="form-group mt-3 mb-2">
                             <dt>
                                 <label name="user[password]" for="user_password">Password</label>
-                                <a href="password_reset" style="float: right;">Forgot password?</a>
+                                <a href="forgot" style="float: right;">Forgot password?</a>
                             </dt>
                             <dd>
                                 <input name="user[password]" required="required" class="form-control input width-full" style="background-color: white" type="password" id="user_password" />

@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/password_reset")
-public class gotoPassword extends HttpServlet {
-    private static final String PASSWORD_RESET = "/WEB-INF/jsp/account/password.jsp";
+@WebServlet("/forgot")
+public class gotoForgot extends HttpServlet {
+    private static final String PASSWORD_RESET = "/WEB-INF/jsp/account/forgot.jsp";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
