@@ -8,4 +8,6 @@ public interface UserDAO {
     User getUserByEmail(String email);
 
     boolean updatePasswordByUsername(String username, String password);
+
+    boolean insertUser(User user);
 }

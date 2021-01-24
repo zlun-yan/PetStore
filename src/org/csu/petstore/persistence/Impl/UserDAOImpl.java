@@ -21,6 +21,9 @@ public class UserDAOImpl implements UserDAO {
     private static final String UPDATE_PASSWORD_BY_EMAIL =
             "UPDATE USERS SET PASSWORD = ? WHERE USERNAME = ?";
 
+    private static final String INSERT_USER =
+            "INSERT INTO USERS(USERNAME, EMAIL, PASSWORD) VALUES(?, ?, ?)";
+
     @Override
     public User getUserByUsername(String username) {
         Connection connection = null;
@@ -91,6 +94,27 @@ public class UserDAOImpl implements UserDAO {
             preparedStatement = connection.prepareStatement(UPDATE_PASSWORD_BY_EMAIL);
             preparedStatement.setString(1, password);
             preparedStatement.setString(2, username);
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(null, preparedStatement, connection);
+        }
+
+        return false;
+    }
+
+    public boolean insertUser(User user) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(INSERT_USER);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getPassword());
 
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException exception) {
