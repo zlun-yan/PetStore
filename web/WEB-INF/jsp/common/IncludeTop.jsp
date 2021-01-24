@@ -12,7 +12,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+
     <script src="static/js/jquery-3.5.1.min.js"></script>
+    <script src="static/js/common/top.js"></script>
+
     <title>PetStore</title>
 </head>
 
@@ -27,20 +30,53 @@
             </a>
         </div>
 
-        <div class="Header-item">
-            <a href="#" class="Header-link">Explore</a>
-        </div>
-        <div class="Header-item">
-            <a href="#" class="Header-link">Pricing</a>
-        </div>
-        <div class="Header-item">
-            <a href="#" class="Header-link">About</a>
+        <div class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+            <div class="Header-item">
+                <a href="#" class="Header-link">Explore</a>
+            </div>
+            <div class="Header-item">
+                <a href="#" class="Header-link">Pricing</a>
+            </div>
+            <div class="Header-item">
+                <a href="#" class="Header-link">About</a>
+            </div>
+
+            <div class="Header-item">
+                <input type="search" class="form-control input-dark"/>
+            </div>
         </div>
 
-        <div class="Header-item" style="float: right;">
-
-<%--            在选择框这里可以加一个select 这个可以在forms里面找到--%>
-            <input type="search" class="form-control input-dark" style="float: right;"/>
+        <div class="d-flex flex-justify-end position-relative">
+            <details class="details-reset details-overlay">
+                <summary aria-haspopup="true">
+                    <img class="avatar avatar-5 mr-2" alt="avatar" src="https://github.com/fluidicon.png" />
+                </summary>
+                <div class="SelectMenu right-0">
+                    <div class="SelectMenu-modal">
+                        <div class="SelectMenu-list">
+                            <button class="SelectMenu-item flex-justify-between" role="menuitem">
+                                Sign in as
+                                <strong class="css-truncate-target">XXX</strong>
+                                <svg
+                                        width="8"
+                                        height="16"
+                                        viewBox="0 0 8 16"
+                                        class="octicon octicon-primitive-dot color-green-5 ml-2"
+                                        aria-hidden="true"
+                                >
+                                    <path fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" />
+                                </svg>
+                            </button>
+                            <hr class="SelectMenu-divider">
+                            <button class="SelectMenu-item" role="menuitem">Your profile</button>
+                            <button class="SelectMenu-item" role="menuitem">Your delivery address</button>
+                            <button class="SelectMenu-item" role="menuitem">Your cart</button>
+                            <hr class="SelectMenu-divider">
+                            <button class="SelectMenu-item" role="menuitem">Sign out</button>
+                        </div>
+                    </div>
+                </div>
+            </details>
         </div>
     </div>
 
