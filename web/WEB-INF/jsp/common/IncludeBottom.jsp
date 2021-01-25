@@ -5,8 +5,9 @@
   Time: 9:58
   To change this template use File | Settings | File Templates.
 --%>
-        <div class="position-relative js-header-wrapper ">
-            <footer class="footer mt-6">
+</div>
+        <div class="position-relative js-header-wrapper zlun-footer mt-6">
+            <footer class="footer">
                 <div class="bg-gray-light">
                     <div class="container-xl p-responsive f6 py-4 d-sm-flex flex-justify-between flex-row-reverse flex-items-center">
                         <ul class="list-style-none d-flex flex-items-center mb-3 mb-sm-0 lh-condensed-ultra">

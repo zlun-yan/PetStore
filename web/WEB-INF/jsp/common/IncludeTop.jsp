@@ -12,6 +12,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+    <link href="static/css/zlun.css" rel="stylesheet">
     <style>
         #search_div {
             max-width: 272px;
@@ -20,9 +21,6 @@
             display: block;
             transition: .2s ease-in-out;
             transition-property: max-width,padding-bottom,padding-top;
-        }
-        #search_div:focus {
-            max-width: 544px;
         }
         #search_input {
             width: 100%;
@@ -73,7 +71,7 @@
                     <div class="SelectMenu right-0">
                         <div class="SelectMenu-modal">
                             <div class="SelectMenu-list">
-                                <button class="SelectMenu-item flex-justify-between" role="menuitem">
+                                <button class="SelectMenu-item flex-justify-between" role="menuitem" id="sign_info">
                                     Sign in as
                                     <strong class="css-truncate-target">${sessionScope.user.username}</strong>
                                     <svg
@@ -87,11 +85,11 @@
                                     </svg>
                                 </button>
                                 <hr class="SelectMenu-divider">
-                                <button class="SelectMenu-item" role="menuitem">Your profile</button>
-                                <button class="SelectMenu-item" role="menuitem">Your delivery address</button>
-                                <button class="SelectMenu-item" role="menuitem">Your cart</button>
+                                <button class="SelectMenu-item" role="menuitem" id="profile">Your profile</button>
+                                <button class="SelectMenu-item" role="menuitem" id="address">Your delivery address</button>
+                                <button class="SelectMenu-item" role="menuitem" id="cart">Your cart</button>
                                 <hr class="SelectMenu-divider">
-                                <button class="SelectMenu-item" role="menuitem">Sign out</button>
+                                <button class="SelectMenu-item" role="menuitem" id="sign_out">Sign out</button>
                             </div>
                         </div>
                     </div>
@@ -100,5 +98,5 @@
         </c:if>
     </div>
 
-
+<div class="zlun-content">
 <%--    下面就是页面的内容--%>

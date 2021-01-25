@@ -16,4 +16,16 @@ $(document).ready(function () {
         $("#search_div").removeAttr("style", "max-width: 544px");
         $("#search_list").hide();
     })
+
+    $("#sign_info").click(function () {
+        window.location.href="info?need=profile";
+    })
+
+    $("#profile").click(function () {
+        window.location.href="info?need=profile";
+    })
+
+    $("#address").click(function () {
+        window.location.href="info?need=address";
+    })
 })

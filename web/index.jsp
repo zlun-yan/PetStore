@@ -60,13 +60,4 @@
             </div>
         </a>
     </div>
-
-
-<style>
-    footer {
-        position: fixed  !important;
-        bottom: 0;
-        width: 100%
-    }
-</style>
 <%@ include file="WEB-INF/jsp/common/IncludeBottom.jsp"%>
