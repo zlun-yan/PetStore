@@ -24,7 +24,7 @@ public class gotoHome extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
 
-        if (user != null) {
+        if (user.getId() != 0) {
             req.getRequestDispatcher("main").forward(req, resp);
         }
         else {

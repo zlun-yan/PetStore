@@ -12,6 +12,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+    <style>
+        #search_div {
+            max-width: 272px;
+            width: 100%;
+
+            display: block;
+            transition: .2s ease-in-out;
+            transition-property: max-width,padding-bottom,padding-top;
+        }
+        #search_div:focus {
+            max-width: 544px;
+        }
+        #search_input {
+            width: 100%;
+        }
+    </style>
 
     <script src="static/js/jquery-3.5.1.min.js"></script>
     <script src="static/js/common/top.js"></script>
@@ -35,49 +51,53 @@
                 <a href="#" class="Header-link">Explore</a>
             </div>
             <div class="Header-item">
-                <a href="#" class="Header-link">Pricing</a>
+                <a href="#" class="Header-link">Market</a>
             </div>
             <div class="Header-item">
                 <a href="#" class="Header-link">About</a>
             </div>
 
-            <div class="Header-item">
-                <input type="search" class="form-control input-dark"/>
+            <div class="Header-item position-relative" id="search_div">
+                <input type="search" class="form-control input-dark" id="search_input" aria-expanded="true"/>
+                <ul class="autocomplete-results" id="search_list" style="display: none">
+                </ul>
             </div>
         </div>
 
-        <div class="d-flex flex-justify-end position-relative">
-            <details class="details-reset details-overlay">
-                <summary aria-haspopup="true">
-                    <img class="avatar avatar-5 mr-2" alt="avatar" src="https://github.com/fluidicon.png" />
-                </summary>
-                <div class="SelectMenu right-0">
-                    <div class="SelectMenu-modal">
-                        <div class="SelectMenu-list">
-                            <button class="SelectMenu-item flex-justify-between" role="menuitem">
-                                Sign in as
-                                <strong class="css-truncate-target">XXX</strong>
-                                <svg
-                                        width="8"
-                                        height="16"
-                                        viewBox="0 0 8 16"
-                                        class="octicon octicon-primitive-dot color-green-5 ml-2"
-                                        aria-hidden="true"
-                                >
-                                    <path fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" />
-                                </svg>
-                            </button>
-                            <hr class="SelectMenu-divider">
-                            <button class="SelectMenu-item" role="menuitem">Your profile</button>
-                            <button class="SelectMenu-item" role="menuitem">Your delivery address</button>
-                            <button class="SelectMenu-item" role="menuitem">Your cart</button>
-                            <hr class="SelectMenu-divider">
-                            <button class="SelectMenu-item" role="menuitem">Sign out</button>
+        <c:if test="${sessionScope.user.id ne 0}">
+            <div class="d-flex flex-justify-end position-relative">
+                <details class="details-reset details-overlay">
+                    <summary aria-haspopup="true">
+                        <img class="avatar avatar-5 mr-2" alt="avatar" src="https://github.com/fluidicon.png" />
+                    </summary>
+                    <div class="SelectMenu right-0">
+                        <div class="SelectMenu-modal">
+                            <div class="SelectMenu-list">
+                                <button class="SelectMenu-item flex-justify-between" role="menuitem">
+                                    Sign in as
+                                    <strong class="css-truncate-target">${sessionScope.user.username}</strong>
+                                    <svg
+                                            width="8"
+                                            height="16"
+                                            viewBox="0 0 8 16"
+                                            class="octicon octicon-primitive-dot color-green-5 ml-2"
+                                            aria-hidden="true"
+                                    >
+                                        <path fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" />
+                                    </svg>
+                                </button>
+                                <hr class="SelectMenu-divider">
+                                <button class="SelectMenu-item" role="menuitem">Your profile</button>
+                                <button class="SelectMenu-item" role="menuitem">Your delivery address</button>
+                                <button class="SelectMenu-item" role="menuitem">Your cart</button>
+                                <hr class="SelectMenu-divider">
+                                <button class="SelectMenu-item" role="menuitem">Sign out</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </details>
-        </div>
+                </details>
+            </div>
+        </c:if>
     </div>
 
 
