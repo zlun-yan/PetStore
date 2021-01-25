@@ -12,3 +12,15 @@ body {
     right: 0 !important;
     height: 68px !important;
 }
+
+#search_div {
+    max-width: 272px;
+    width: 100%;
+
+    display: block;
+    transition: .2s ease-in-out;
+    transition-property: max-width,padding-bottom,padding-top;
+}
+#search_input {
+    width: 100%;
+}

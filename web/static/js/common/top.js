@@ -28,4 +28,8 @@ $(document).ready(function () {
     $("#address").click(function () {
         window.location.href="info?need=address";
     })
+
+    $("#orders").click(function () {
+        window.location.href="info?need=orders";
+    })
 })

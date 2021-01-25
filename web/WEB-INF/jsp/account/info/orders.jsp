@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: ZlunYan
-  Date: 2021/1/24
-  Time: 20:54
+  Date: 2021/1/25
+  Time: 21:44
   To change this template use File | Settings | File Templates.
 --%>
 <div class="box-shadow-extra-large p-3">
-    profile
+    orders
 </div>
-<script src="static/js/account/info/profile.js"></script>
+
+<script src="static/js/account/orders.js"></script>

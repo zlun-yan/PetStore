@@ -13,28 +13,5 @@
 <%@include file="common/IncludeTop.jsp"%>
 
 <div>product</div>
-<div>product</div>
-<div>product</div>
-<div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
-<div>product</div><div>product</div><div>product</div><div>product</div><div>product</div><div>product</div>
+
 <%@include file="common/IncludeBottom.jsp"%>

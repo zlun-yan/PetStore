@@ -13,19 +13,6 @@
 <head>
     <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
     <link href="static/css/zlun.css" rel="stylesheet">
-    <style>
-        #search_div {
-            max-width: 272px;
-            width: 100%;
-
-            display: block;
-            transition: .2s ease-in-out;
-            transition-property: max-width,padding-bottom,padding-top;
-        }
-        #search_input {
-            width: 100%;
-        }
-    </style>
 
     <script src="static/js/jquery-3.5.1.min.js"></script>
     <script src="static/js/common/top.js"></script>
@@ -87,6 +74,7 @@
                                 <hr class="SelectMenu-divider">
                                 <button class="SelectMenu-item" role="menuitem" id="profile">Your profile</button>
                                 <button class="SelectMenu-item" role="menuitem" id="address">Your delivery address</button>
+                                <button class="SelectMenu-item" role="menuitem" id="orders">Your orders</button>
                                 <button class="SelectMenu-item" role="menuitem" id="cart">Your cart</button>
                                 <hr class="SelectMenu-divider">
                                 <button class="SelectMenu-item" role="menuitem" id="sign_out">Sign out</button>
