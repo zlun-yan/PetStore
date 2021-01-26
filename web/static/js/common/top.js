@@ -32,4 +32,8 @@ $(document).ready(function () {
     $("#orders").click(function () {
         window.location.href="info?need=orders";
     })
+
+    $("#cart").click(function () {
+        window.location.href="cart";
+    })
 })
