@@ -33,7 +33,7 @@
 
         <div class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
             <div class="Header-item">
-                <a href="#" class="Header-link">Explore</a>
+                <a href="explore?need=dog" class="Header-link">Explore</a>
             </div>
             <div class="Header-item">
                 <a href="#" class="Header-link">Market</a>

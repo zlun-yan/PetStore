@@ -13,6 +13,17 @@ body {
     height: 68px !important;
 }
 
+.zlun-box {
+    width: 48%;
+    display: inline-block;
+}
+
+.zlun-img {
+    background-size:contain|cover;
+    width:100%;
+    height: auto;
+}
+
 #search_div {
     max-width: 272px;
     width: 100%;

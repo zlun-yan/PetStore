@@ -14,7 +14,8 @@ import java.util.List;
 
 public class AddressDAOImpl implements AddressDAO {
     private static final String GET_ADDRESS_BY_USERID =
-            "SELECT ID, USER_ID, PROVINCE, CITY, DISTRICT, ADDRESS_CODE, DETAILS, NAME, PHONE FROM ADDRESS WHERE USER_ID = ?";
+            "SELECT ID, USER_ID, PROVINCE, CITY, DISTRICT, ADDRESS_CODE, DETAILS, NAME, PHONE " +
+                    "FROM ADDRESS WHERE USER_ID = ?";
     private static final String INSERT_USER =
             "INSERT INTO ADDRESS(USER_ID, PROVINCE, CITY, DISTRICT, ADDRESS_CODE, DETAILS, NAME, PHONE) " +
                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
