@@ -158,4 +158,51 @@ $(document).ready(function () {
     $("#error_button").on("click", function () {
         $("#errorBox").hide();
     })
+
+    $("#list_error_button").on("click", function () {
+        $("#listErrorBox").hide();
+    })
+    list_error_button
+
+    $("table button").on("click", function () {
+        var id = $(this).attr("id");
+        id = id.split("_");
+
+        if (id[0] == "default") {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "defaultAddr",
+                timeout: 2000,
+                data: {
+                    addressId: id[1]
+                },
+                beforeSend: function() {
+                    $(this).attr("value", "Setting...").attr("disabled", "true");
+                },
+                success: function (data) {
+                    var state = data["state"];
+                    if (state == "success") {
+                        window.location.reload();
+                    }
+                    else if (state == "fail") {
+                        $("#listInfo").text("Error, please try again.");
+                        $("#listErrorBox").show();
+                        $(this).attr("value", "Set as default").removeAttr("disabled");
+                    }
+                },
+                error : function() {
+                    $("#listInfo").text("Error, please try again.");
+                    $("#listErrorBox").show();
+                    $(this).attr("value", "Set as default").removeAttr("disabled");
+                }
+            });
+        }
+        else if (id[0] == "change") {
+            console.log("split change " + id[1]);
+        }
+        else if (id[0] == "delete") {
+            console.log("split delete " + id[1]);
+        }
+    })
 })

@@ -15,6 +15,15 @@
 </div>
 
 <div>
+    <div class="my-3">
+        <div class="flash">
+            <svg class="octicon octicon-flame" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.99789 14.5001C10.8304 14.5001 12.9971 12.5193 12.9971 10C12.9971 8.53654 12.3174 7.80948 11.1193 6.61667C11.1071 6.60453 11.0949 6.59236 11.0826 6.58014C10.0696 5.57183 8.7824 4.29061 8.24911 2.14559C7.92718 2.40211 7.61813 2.72476 7.38529 3.09924C6.95273 3.79496 6.7637 4.67919 7.33879 5.82934C7.81231 6.77637 8.00841 8.11294 7.06066 9.06069C6.45006 9.67129 5.51641 9.90115 4.65812 9.69385C4.1002 9.55909 3.61121 9.25672 3.22215 8.81981C3.08407 9.16747 3.00001 9.57013 3 10.0001C2.99994 12.5298 5.1636 14.5001 7.99789 14.5001ZM9.5332 0.752514C9.49562 0.340008 9.16001 0.00931669 8.76889 0.145686C7.03463 0.750359 4.34051 3.18696 5.99715 6.50017C6.34142 7.1887 6.28164 7.71839 6 8.00003C5.58104 8.41899 4.45998 8.4869 3.95925 7.16847C3.78678 6.71435 3.30098 6.40593 2.92501 6.71353C2.03625 7.44067 1.50003 8.70216 1.5 10C1.49992 13.5121 4.49789 16.0001 7.99789 16.0001C11.4979 16.0001 14.4971 13.5 14.4971 10C14.4971 7.86282 13.3699 6.74064 12.1862 5.56222C10.9968 4.37809 9.7504 3.13717 9.5332 0.752514Z"></path></svg>
+            <span id="oper-info">
+            New Delivery Address
+        </span>
+        </div>
+    </div>
+
     <div class="mb-3" id="errorBox" style="display: none">
         <div class="flash flash-full flash-error" style="border-width: 1px; border-radius: 6px">
             <div class="container-lg px-2" >
@@ -95,6 +104,21 @@
     </span>
     </div>
 
+    <div class="mb-3" id="listErrorBox" style="display: none">
+        <div class="flash flash-full flash-error" style="border-width: 1px; border-radius: 6px">
+            <div class="container-lg px-2" >
+                <button class="flash-close js-flash-close" type="button" aria-label="Dismiss this message" id="list_error_button">
+                    <svg class="octicon octicon-x" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                    </svg>
+                </button>
+                <p id="listInfo">
+                    Error
+                </p>
+            </div>
+        </div>
+    </div>
+
     <div class="markdown-body">
         <table>
             <thead>
@@ -120,17 +144,17 @@
                     <td>${address.details}</td>
                     <td>${address.phone}</td>
                     <td>
-                        <button class="btn btn-invisible" type="button">Change</button>
+                        <button class="btn btn-invisible" type="button" id="change_${address.id}">Change</button>
                         <span>|</span>
-                        <button class="btn btn-invisible" type="button">Delete</button>
+                        <button class="btn btn-invisible" type="button" id="delete_${address.id}">Delete</button>
                     </td>
                     <td>
                         <c:choose>
                             <c:when test="${address.id eq sessionScope.user.default_addr_id}">
-                                <button class="btn btn-outline mr-2" type="button" disabled>Default</button>
+                                <button class="btn btn-primary mr-2" type="button" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
                             </c:when>
                             <c:otherwise>
-                                <button class="btn btn-outline mr-2" type="button">Set as default</button>
+                                <button class="btn btn-outline mr-2" type="button" id="default_${address.id}">Set as default</button>
                             </c:otherwise>
                         </c:choose>
                     </td>

@@ -13,4 +13,4 @@
     orders
 </div>
 
-<script src="static/js/account/orders.js"></script>
+<script src="static/js/account/info/orders.js"></script>

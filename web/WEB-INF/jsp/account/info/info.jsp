@@ -42,7 +42,7 @@
             </c:choose>
         </nav>
     </div>
-    <div class="p-5" id="info_content" style="max-width: 1095px">
+    <div class="p-5 width-full" id="info_content" style="max-width: 1095px">
         <c:if test="${param.need eq 'profile'}">
             <%@ include file="profile.jsp"%>
         </c:if>
