@@ -1,5 +1,7 @@
 package org.csu.petstore.domain;
 
+import java.util.List;
+
 public class User {
     private int id;
     private String username;
@@ -9,6 +11,8 @@ public class User {
     private String avatar_url;
     private int default_addr_id;
     private int address_num;
+
+    private List<Address> addressList;
 
     public String getEmail() {
         return email;
@@ -38,6 +42,10 @@ public class User {
         return avatar_url;
     }
 
+    public List<Address> getAddressList() {
+        return addressList;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -64,5 +72,9 @@ public class User {
 
     public void setDefault_addr_id(int default_addr_id) {
         this.default_addr_id = default_addr_id;
+    }
+
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
     }
 }

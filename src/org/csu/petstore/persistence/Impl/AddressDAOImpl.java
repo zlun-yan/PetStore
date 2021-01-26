@@ -9,8 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddressDAOImpl implements AddressDAO {
+    private static final String GET_ADDRESS_BY_USERID =
+            "SELECT ID, USER_ID, PROVINCE, CITY, DISTRICT, ADDRESS_CODE, DETAILS, NAME, PHONE FROM ADDRESS WHERE USER_ID = ?";
     private static final String INSERT_USER =
             "INSERT INTO ADDRESS(USER_ID, PROVINCE, CITY, DISTRICT, ADDRESS_CODE, DETAILS, NAME, PHONE) " +
                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
@@ -48,5 +52,42 @@ public class AddressDAOImpl implements AddressDAO {
         }
 
         return 0;
+    }
+
+    public List<Address> getAddressByUserId(int userId) {
+        List<Address> addressList = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(GET_ADDRESS_BY_USERID);
+            preparedStatement.setInt(1, userId);
+
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Address address = new Address();
+
+                address.setId(resultSet.getInt(1));
+                address.setUserId(resultSet.getInt(2));
+                address.setProvince(resultSet.getString(3));
+                address.setCity(resultSet.getString(4));
+                address.setDistrict(resultSet.getString(5));
+                address.setAddressCode(resultSet.getInt(6));
+                address.setDetails(resultSet.getString(7));
+                address.setName(resultSet.getString(8));
+                address.setPhone(resultSet.getString(9));
+
+                addressList.add(address);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(resultSet, preparedStatement, connection);
+        }
+
+        return addressList;
     }
 }

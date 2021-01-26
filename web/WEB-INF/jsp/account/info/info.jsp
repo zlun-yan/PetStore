@@ -5,6 +5,10 @@
   Time: 16:59
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ include file="../../common/IncludeTop.jsp"%>
 <input type="hidden" value="${param.need}" id="need">
 
@@ -38,7 +42,7 @@
             </c:choose>
         </nav>
     </div>
-    <div class="p-5 width-full" id="info_content">
+    <div class="p-5" id="info_content" style="max-width: 1095px">
         <c:if test="${param.need eq 'profile'}">
             <%@ include file="profile.jsp"%>
         </c:if>

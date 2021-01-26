@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.csu.petstore.domain.User;
 import org.csu.petstore.persistence.Impl.UserDAOImpl;
 import org.csu.petstore.persistence.UserDAO;
+import org.csu.petstore.service.AddressService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +20,7 @@ import java.util.regex.Pattern;
 @WebServlet("/signInForm")
 public class SignIn extends HttpServlet {
     private UserDAO userDAO;
+    private AddressService addressService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,6 +43,9 @@ public class SignIn extends HttpServlet {
         if (user != null) {
             if (user.getPassword().equals(password)) {
                 System.out.println("Password correct.");
+
+                addressService = new AddressService();
+                user.setAddressList(addressService.getAddressListById(user.getId()));
 
                 HttpSession session = req.getSession();
                 session.setAttribute("user", user);
