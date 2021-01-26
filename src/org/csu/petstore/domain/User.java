@@ -6,6 +6,10 @@ public class User {
     private String email;
     private String password;
 
+    private String avatar_url;
+    private int default_addr_id;
+    private int address_num;
+
     public String getEmail() {
         return email;
     }
@@ -22,6 +26,18 @@ public class User {
         return password;
     }
 
+    public int getAddress_num() {
+        return address_num;
+    }
+
+    public int getDefault_addr_id() {
+        return default_addr_id;
+    }
+
+    public String getAvatar_url() {
+        return avatar_url;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -36,5 +52,17 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setAddress_num(int address_num) {
+        this.address_num = address_num;
+    }
+
+    public void setAvatar_url(String avatar_url) {
+        this.avatar_url = avatar_url;
+    }
+
+    public void setDefault_addr_id(int default_addr_id) {
+        this.default_addr_id = default_addr_id;
     }
 }
