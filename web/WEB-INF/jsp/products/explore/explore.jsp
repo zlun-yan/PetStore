@@ -12,7 +12,11 @@
 <%@ include file="../../common/IncludeTop.jsp"%>
 <input type="hidden" value="${param.need}" id="need">
 
-<div class="d-inline-flex width-full">
+
+<div class="position-fixed bottom-0 left-0 mb-3 ml-3" id="alert" style="z-index: 99">
+</div>
+
+<div class="d-inline-flex width-full mb-5">
     <div class="p-5">
         <nav class="SideNav border" style="width: 360px">
             <a class="SideNav-item">Type</a>
@@ -51,21 +55,29 @@
         <div class="m-3 container-lg">
             <c:forEach var="item" items="${sessionScope.itemList}">
                 <div class="col-6 zlun-box mx-2">
-                    <a class="d-block box-shadow-medium px-3 pt-4 pb-6 position-relative rounded-1 overflow-hidden no-underline"
-                       href="#" id="info_${item.id}">
-                        <div class="bg-blue position-absolute top-0 left-0 py-1 width-full"></div>
-                        <h3 class="text-gray-dark">${item.name}</h3>
-                        <div class="my-2">
-                            <img class="zlun-img" src="${item.picUrl}">
-                        </div>
-                        <h3 class="text-red">$${item.price}</h3>
-                        <p class="text-gray">
-                            ${item.sale} SOLD
-                        </p>
+                    <div class="d-block box-shadow-medium px-3 pt-4 pb-6 position-relative rounded-1 overflow-hidden no-underline">
+                        <a id="info_${item.id}" class="no-underline d-block" style="cursor: pointer">
+                            <div class="bg-blue position-absolute top-0 left-0 py-1 width-full"></div>
+                            <h3 class="text-gray-dark">${item.name}</h3>
+                            <div class="my-2">
+                                <img class="zlun-img" src="${item.picUrl}">
+                            </div>
+                            <h3 class="text-red">$${item.price}</h3>
+                            <p class="text-gray">
+                                    ${item.sale} SOLD
+                            </p>
+                        </a>
                         <div>
-                            <button class="btn btn-primary btn-block" type="button">Add to Cart</button>
+                            <c:choose>
+                                <c:when test="${sessionScope.user.id eq 0}">
+                                    <button class="btn btn-primary btn-block" type="button" id="cart_${item.id}" disabled>Add to Cart</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button class="btn btn-primary btn-block" type="button" id="cart_${item.id}">Add to Cart</button>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </c:forEach>
         </div>
