@@ -8,4 +8,6 @@ public interface CartDAO {
     boolean insertCartItemByUserIdAndItemIdAndNum(int userId, int itemId, int num);
 
     List<Cart> getCartListByUserId(int userId);
+
+    boolean updateCartItemNumById(int id, int num);
 }

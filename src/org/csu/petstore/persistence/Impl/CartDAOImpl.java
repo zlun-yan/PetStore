@@ -19,6 +19,8 @@ public class CartDAOImpl implements CartDAO {
     private static final String GET_CART_BY_USERID =
             "SELECT ID, USER_ID, ITEM_ID, NUM " +
                     "FROM CART WHERE USER_ID = ?";
+    private static final String UPDATE_CART_ITEM_NUM_BY_ID =
+            "UPDATE CART SET NUM = ? WHERE ID = ?";
 
 
     @Override
@@ -75,5 +77,26 @@ public class CartDAOImpl implements CartDAO {
         }
 
         return cartList;
+    }
+
+    @Override
+    public boolean updateCartItemNumById(int id, int num) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(UPDATE_CART_ITEM_NUM_BY_ID);
+            preparedStatement.setInt(1, num);
+            preparedStatement.setInt(2, id);
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(null, preparedStatement, connection);
+        }
+
+        return false;
     }
 }

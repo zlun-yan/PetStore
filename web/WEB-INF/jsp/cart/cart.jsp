@@ -1,4 +1,4 @@
-<%--
+<%@ page import="org.csu.petstore.domain.User" %><%--
   Created by IntelliJ IDEA.
   User: ZlunYan
   Date: 2021/1/26
@@ -19,19 +19,33 @@
         <c:forEach items="${sessionScope.user.cartList}" var="cart">
             <div class="border d-flex" style="height: 96px">
                 <div class="p-3 flex-self-center">
-                    <label><input type="checkbox" />&nbsp;</label>
+                    <label style="cursor: pointer"><input type="checkbox" style="cursor: pointer" id="check_${cart.id}"/>&nbsp;</label>
                 </div>
                 <div class="p-2" style="width: 96px">
                     <img src="${cart.item.picUrl}" class="zlun-img">
                 </div>
                 <div class="p-3 flex-self-center">${cart.item.name}</div>
                 <div class="p-5 flex-1">&nbsp;</div>
-                <div class="p-3 flex-self-center">${cart.item.price}</div>
+
+                <div class="p-3 flex-self-center">$<span id="price_${cart.id}">${cart.item.price}</span></div>
                 <div class="p-3 flex-self-center">
-                    <button class="btn btn-sm" type="button">+</button>
-                    <input class="form-control input-sm" type="text" value="${cart.num}" style="width: 70px"/>
-                    <button class="btn btn-sm" type="button">-</button>
+                    <div class="d-flex flex-column">
+                        <div class="flex-self-center">
+                            <button class="btn btn-sm" type="button" id="add_${cart.id}">+</button>
+                            <input class="form-control input-sm" type="text" value="${cart.num}" style="width: 70px" id="num_${cart.id}"/>
+                            <button class="btn btn-sm" type="button" id="sub_${cart.id}">-</button>
+                        </div>
+                        <div class="flex-self-center">
+                            <span class="text-gray-light">max: &nbsp;<span id="maxNum_${cart.id}">${cart.item.num}</span> </span>
+                        </div>
+                    </div>
                 </div>
+                <div class="p-3 flex-self-center">
+                    <strong class="text-red">
+                        $<span id="tot_${cart.id}">${cart.item.price * cart.num}</span>
+                    </strong>
+                </div>
+
                 <div class="p-3 flex-self-center">
                     <button class="btn btn-sm btn-danger" type="button" id="delete_${cart.id}">Delete</button>
                 </div>
@@ -40,6 +54,8 @@
                 </div>
             </div>
         </c:forEach>
+
+        <input type="hidden" value="${sessionScope.user.cartList.size()}" id="cartNum">
     </div>
 </div>
 
@@ -47,16 +63,16 @@
     <div id="checkBar">
         <div class="border d-flex mx-3" style="height: 68px;background-color: #E5E5E5">
             <div class="p-3 flex-self-center">
-                <label id="select_all">
-                    <input type="checkbox"/>
+                <label style="cursor: pointer">
+                    <input style="cursor: pointer" type="checkbox" id="all_select"/>
                     <span>&nbsp;Select all</span>
                 </label>
             </div>
             <div class="p-5 flex-1">&nbsp;</div>
             <div class="p-3 flex-self-center">
                 <strong>
-                    Subtotal(XX items):
-                    <span class="text-red">$XX</span>
+                    Subtotal(<span id="order_num">0 item</span>):
+                    <span class="text-red">$<span id="order_price">0</span></span>
                 </strong>
             </div>
             <div class="p-3 flex-self-center">
