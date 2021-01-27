@@ -31,9 +31,23 @@
                 <div class="p-3 flex-self-center">
                     <div class="d-flex flex-column">
                         <div class="flex-self-center">
-                            <button class="btn btn-sm" type="button" id="add_${cart.id}">+</button>
+                            <c:choose>
+                                <c:when test="${cart.num eq cart.item.num}">
+                                    <button class="btn btn-sm" type="button" id="add_${cart.id}" disabled="disabled">+</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button class="btn btn-sm" type="button" id="add_${cart.id}">+</button>
+                                </c:otherwise>
+                            </c:choose>
                             <input class="form-control input-sm" type="text" value="${cart.num}" style="width: 70px" id="num_${cart.id}"/>
-                            <button class="btn btn-sm" type="button" id="sub_${cart.id}">-</button>
+                            <c:choose>
+                                <c:when test="${cart.num eq 1}">
+                                    <button class="btn btn-sm" type="button" id="sub_${cart.id}" disabled="disabled">-</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button class="btn btn-sm" type="button" id="sub_${cart.id}">-</button>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="flex-self-center">
                             <span class="text-gray-light">max: &nbsp;<span id="maxNum_${cart.id}">${cart.item.num}</span> </span>
