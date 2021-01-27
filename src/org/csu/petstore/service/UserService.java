@@ -8,9 +8,13 @@ import javax.servlet.http.HttpSession;
 
 public class UserService {
     private UserDAO userDAO;
+    private AddressService addressService;
+    private CartService cartService;
 
     public UserService() {
         userDAO = new UserDAOImpl();
+        addressService = new AddressService();
+        cartService = new CartService();
     }
 
     public boolean setDefaultAddr(User user, int default_addr_id, HttpSession session) {
@@ -21,7 +25,15 @@ public class UserService {
 
     public boolean addAddress(User user, int delta, HttpSession session) {
         user.setAddress_num(user.getAddress_num() + delta);
+        user.setAddressList(addressService.getAddressListById(user.getId()));
         session.setAttribute("user", user);
         return userDAO.updateUserAddressNumById(user.getId(), user.getAddress_num());
+    }
+
+    public boolean addToCart(User user, int itemId, int num, HttpSession session) {
+        cartService.insertCartByUserIdAndItemIdAndNum(user.getId(), itemId, num);
+        user.setCartList(cartService.getCartListByUserId(user.getId()));
+        session.setAttribute("user", user);
+        return true;
     }
 }

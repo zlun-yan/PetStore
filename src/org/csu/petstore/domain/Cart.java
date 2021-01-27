@@ -6,6 +6,8 @@ public class Cart {
     private int itemId;
     private int num;
 
+    private Item item;
+
     public int getNum() {
         return num;
     }
@@ -22,6 +24,10 @@ public class Cart {
         return itemId;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
     public void setNum(int num) {
         this.num = num;
     }
@@ -36,5 +42,9 @@ public class Cart {
 
     public void setItemId(int itemId) {
         this.itemId = itemId;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

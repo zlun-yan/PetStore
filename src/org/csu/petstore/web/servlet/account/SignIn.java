@@ -6,6 +6,8 @@ import org.csu.petstore.domain.User;
 import org.csu.petstore.persistence.Impl.UserDAOImpl;
 import org.csu.petstore.persistence.UserDAO;
 import org.csu.petstore.service.AddressService;
+import org.csu.petstore.service.CartService;
+import org.csu.petstore.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +22,7 @@ import java.util.regex.Pattern;
 @WebServlet("/signInForm")
 public class SignIn extends HttpServlet {
     private UserDAO userDAO;
+    private CartService cartService;
     private AddressService addressService;
 
     @Override
@@ -45,7 +48,9 @@ public class SignIn extends HttpServlet {
                 System.out.println("Password correct.");
 
                 addressService = new AddressService();
+                cartService = new CartService();
                 user.setAddressList(addressService.getAddressListById(user.getId()));
+                user.setCartList(cartService.getCartListByUserId(user.getId()));
 
                 HttpSession session = req.getSession();
                 session.setAttribute("user", user);

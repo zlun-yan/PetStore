@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ItemDAO {
     List<Item> getItemByTypeId(int typeId);
+
+    Item getItemByItemId(int itemId);
 }

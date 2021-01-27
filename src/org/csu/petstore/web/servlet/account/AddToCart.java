@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.csu.petstore.domain.User;
 import org.csu.petstore.persistence.CartDAO;
 import org.csu.petstore.persistence.Impl.CartDAOImpl;
+import org.csu.petstore.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +16,7 @@ import java.io.IOException;
 
 @WebServlet("/addToCart")
 public class AddToCart extends HttpServlet {
-    private CartDAO cartDAO;
+    private UserService userService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,8 +25,8 @@ public class AddToCart extends HttpServlet {
         int itemId = Integer.parseInt(req.getParameter("itemId"));
 
         JSONObject jsonObject = new JSONObject();
-        cartDAO = new CartDAOImpl();
-        if (cartDAO.insertCartItemByUserIdAndItemIdAndNum(user.getId(), itemId, 1)) {
+        userService = new UserService();
+        if (userService.addToCart(user, itemId, 1, session)) {
             jsonObject.put("state", "success");
         }
         else {
