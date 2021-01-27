@@ -2,6 +2,7 @@ package org.csu.petstore.persistence.Impl;
 
 import org.csu.petstore.domain.Address;
 import org.csu.petstore.domain.Cart;
+import org.csu.petstore.domain.User;
 import org.csu.petstore.persistence.CartDAO;
 import org.csu.petstore.persistence.DBUtil;
 
@@ -21,6 +22,11 @@ public class CartDAOImpl implements CartDAO {
                     "FROM CART WHERE USER_ID = ?";
     private static final String UPDATE_CART_ITEM_NUM_BY_ID =
             "UPDATE CART SET NUM = ? WHERE ID = ?";
+    private static final String DELETE_CART_ITEM_BY_ID =
+            "DELETE FROM CART WHERE ID = ?";
+    private static final String GET_CART_RECORD_BY_ID =
+            "SELECT ID, USER_ID, ITEM_ID, NUM " +
+                    "FROM CART WHERE ID = ?";
 
 
     @Override
@@ -98,5 +104,55 @@ public class CartDAOImpl implements CartDAO {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean deleteCartItemById(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(DELETE_CART_ITEM_BY_ID);
+            preparedStatement.setInt(1, id);
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(null, preparedStatement, connection);
+        }
+
+        return false;
+    }
+
+    @Override
+    public Cart getCartRecordById(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        Cart cart = new Cart();
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(GET_CART_RECORD_BY_ID);
+            preparedStatement.setInt(1, id);
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                cart.setId(resultSet.getInt(1));
+                cart.setUserId(resultSet.getInt(2));
+                cart.setItemId(resultSet.getInt(3));
+                cart.setNum(resultSet.getInt(4));
+
+                return cart;
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(resultSet, preparedStatement, connection);
+        }
+        return null;
     }
 }

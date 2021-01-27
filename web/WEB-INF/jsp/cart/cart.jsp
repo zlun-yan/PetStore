@@ -90,7 +90,7 @@
                 </strong>
             </div>
             <div class="p-3 flex-self-center">
-                <button class="btn btn-sm btn-primary" type="button">Proceed to checkout</button>
+                <button class="btn btn-sm btn-primary" type="button" id="checkout" disabled="disabled">Proceed to checkout</button>
             </div>
         </div>
     </div>

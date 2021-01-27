@@ -10,4 +10,8 @@ public interface CartDAO {
     List<Cart> getCartListByUserId(int userId);
 
     boolean updateCartItemNumById(int id, int num);
+
+    boolean deleteCartItemById(int id);
+
+    Cart getCartRecordById(int id);
 }

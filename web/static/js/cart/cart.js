@@ -86,6 +86,13 @@ $(document).ready(function () {
         }
 
         $("#order_price").text(subTot);
+
+        if (checked >= 1) {
+            $("#checkout").removeAttr("disabled");
+        }
+        else {
+            $("#checkout").attr("disabled", "true");
+        }
     })
 
     $("button").on("click", function () {
@@ -263,5 +270,36 @@ $(document).ready(function () {
                 }
             });
         }
+    })
+
+    $("#checkout").on("click", function (e) {
+        var cartIds = [];
+
+        $("input[type=checkbox]").each(function () {
+            var temp = this.id;
+
+            temp = temp.split("_");
+            if (temp[0] == "check") {
+                if ($(this).prop("checked")) {
+                    cartIds.push(temp[1]);
+                }
+            }
+        })
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "checkout",
+            timeout: 2000,
+            data: {
+                ids: cartIds.join(";")
+            },
+            success: function() {
+                window.location.reload();
+            },
+            error : function() {
+
+            }
+        });
     })
 })
