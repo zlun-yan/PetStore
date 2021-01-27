@@ -23,7 +23,6 @@ public class CartService {
         List<Cart> cartList = cartDAO.getCartListByUserId(userId);
 
         for (Cart cart : cartList) {
-            System.out.println(cart.getItemId());
             cart.setItem(itemDAO.getItemByItemId(cart.getItemId()));
         }
 

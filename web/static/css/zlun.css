@@ -24,6 +24,13 @@ body {
     height: auto;
 }
 
+.zlun-bottom-box {
+    width: 100%;
+    position: fixed !important;
+    bottom: -1px;
+    z-index: 99;
+}
+
 #search_div {
     max-width: 272px;
     width: 100%;

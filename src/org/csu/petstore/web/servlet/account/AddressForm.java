@@ -47,7 +47,6 @@ public class AddressForm extends HttpServlet {
             userService.addAddress(user, 1, session);
 
             boolean isDefault = Boolean.parseBoolean(req.getParameter("defaultAddr"));
-            System.out.println(isDefault);
             if (isDefault) {
                 if (userService.setDefaultAddr(user, addressId, session)) {
                     //  成功插入 并且将其设置为默认地址

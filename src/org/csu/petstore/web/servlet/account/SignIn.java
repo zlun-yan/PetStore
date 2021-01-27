@@ -45,8 +45,6 @@ public class SignIn extends HttpServlet {
 
         if (user != null) {
             if (user.getPassword().equals(password)) {
-                System.out.println("Password correct.");
-
                 addressService = new AddressService();
                 cartService = new CartService();
                 user.setAddressList(addressService.getAddressListById(user.getId()));
@@ -60,15 +58,11 @@ public class SignIn extends HttpServlet {
                 jsonObject.put("state", "correct");
             }
             else {
-                System.out.println("Password wrong.");
-
                 jsonObject = new JSONObject();
                 jsonObject.put("state", "psdwrong");
             }
         }
         else {
-            System.out.println("User is not exist.");
-
             jsonObject = new JSONObject();
             jsonObject.put("state", "namewrong");
         }
