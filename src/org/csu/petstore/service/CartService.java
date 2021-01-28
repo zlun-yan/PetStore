@@ -115,6 +115,7 @@ public class CartService {
         }
 
         order.setClausesList(clausesList);
+        order.setId(orderId);
         user.getOrderList().add(order);
         user.setCartList(getCartListByUserId(user.getId()));
         session.setAttribute("user", user);

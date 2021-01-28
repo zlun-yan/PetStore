@@ -3,6 +3,7 @@ package org.csu.petstore.web.servlet.order;
 import com.alibaba.fastjson.JSONObject;
 import org.csu.petstore.persistence.Impl.OrderDAOImpl;
 import org.csu.petstore.persistence.OrderDAO;
+import org.csu.petstore.service.OrderService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,15 +14,15 @@ import java.io.IOException;
 
 @WebServlet("/pay")
 public class Pay extends HttpServlet {
-    private OrderDAO orderDAO;
+    private OrderService orderService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int orderId = Integer.parseInt(req.getParameter("orderId"));
 
         JSONObject jsonObject = new JSONObject();
-        orderDAO = new OrderDAOImpl();
-        if (orderDAO.updateOrderStateById(orderId, 1)) {
+        orderService = new OrderService();
+        if (orderService.changeOrderById(orderId, 1, req.getSession())) {
             jsonObject.put("state", "success");
         }
         else {

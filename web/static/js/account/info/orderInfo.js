@@ -33,8 +33,9 @@ $(document).ready(function () {
                 orderId: orderId
             },
             success: function() {
-                $(this).attr("disabled", "disabled");
+                $("#orderInfo_pay").attr("disabled", "disabled");
                 $("#orderInfo_deliver").removeAttr("disabled");
+                console.log("pay success");
             },
             error : function() {
 
@@ -53,7 +54,7 @@ $(document).ready(function () {
             success: function(date) {
                 var state = date['state'];
                 if (state != "fail") {
-                    $(this).attr("disabled", "disabled");
+                    $("#orderInfo_deliver").attr("disabled", "disabled");
                     console.log(state);
                 }
             },

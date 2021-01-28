@@ -22,26 +22,26 @@
             <a class="SideNav-item">Type</a>
             <c:choose>
                 <c:when test="${param.need eq 'parrot'}">
-                    <button class="SideNav-item" id="parrot" aria-current="page">Parrot</button>
+                    <button class="SideNav-item zlun-js-explore-side" id="parrot" aria-current="page">Parrot</button>
                 </c:when>
                 <c:otherwise>
-                    <button class="SideNav-item" id="parrot">Parrot</button>
+                    <button class="SideNav-item zlun-js-explore-side" id="parrot">Parrot</button>
                 </c:otherwise>
             </c:choose>
             <c:choose>
                 <c:when test="${param.need eq 'dog'}">
-                    <button class="SideNav-item" id="dog" aria-current="page">Dog</button>
+                    <button class="SideNav-item zlun-js-explore-side" id="dog" aria-current="page">Dog</button>
                 </c:when>
                 <c:otherwise>
-                    <button class="SideNav-item" id="dog">Dog</button>
+                    <button class="SideNav-item zlun-js-explore-side" id="dog">Dog</button>
                 </c:otherwise>
             </c:choose>
             <c:choose>
                 <c:when test="${param.need eq 'cat'}">
-                    <button class="SideNav-item" id="cat" aria-current="page">Cat</button>
+                    <button class="SideNav-item zlun-js-explore-side" id="cat" aria-current="page">Cat</button>
                 </c:when>
                 <c:otherwise>
-                    <button class="SideNav-item" id="cat">Cat</button>
+                    <button class="SideNav-item zlun-js-explore-side" id="cat">Cat</button>
                 </c:otherwise>
             </c:choose>
         </nav>
@@ -73,7 +73,7 @@
                                     <button class="btn btn-primary btn-block" type="button" id="cart_${item.id}" disabled>Add to Cart</button>
                                 </c:when>
                                 <c:otherwise>
-                                    <button class="btn btn-primary btn-block" type="button" id="cart_${item.id}">Add to Cart</button>
+                                    <button class="btn btn-primary btn-block zlun-js-add-to-cart" type="button" id="cart_${item.id}">Add to Cart</button>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -83,16 +83,6 @@
         </div>
     </div>
 </div>
-
-<%--<c:if test="${param.need eq 'parrot'}">--%>
-<%--    <script src="static/js/products/explore/parrot.js"></script>--%>
-<%--</c:if>--%>
-<%--<c:if test="${param.need eq 'dog'}">--%>
-<%--    <script src="static/js/products/explore/dog.js"></script>--%>
-<%--</c:if>--%>
-<%--<c:if test="${param.need eq 'cat'}">--%>
-<%--    <script src="static/js/products/explore/cat.js"></script>--%>
-<%--</c:if>--%>
 
 <script src="static/js/products/explore/explore.js"></script>
 <%@ include file="../../common/IncludeBottom.jsp"%>
