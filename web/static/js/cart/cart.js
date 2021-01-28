@@ -196,6 +196,10 @@ $(document).ready(function () {
         }
     })
 
+    $("#zlun-js-cart-explore").on("click", function () {
+        window.location.href = "explore?need=dog";
+    })
+
     $(".zlun-js-add-button").on("click", function () {
         var id = this.id;
         id = id.split("_");

@@ -15,6 +15,11 @@
 
 <%@include file="common/IncludeTop.jsp"%>
 
-<div>product</div>
+<div class="blankslate blankslate-large">
+    <img src="https://ghicons.github.com/assets/images/blue/png/Pull%20request.png" alt="" class="mb-3" />
+    <h3 class="mb-1">Come and find a partner to take home.</h3>
+    <button class="btn btn-primary my-3" type="button" id="zlun-js-main-explore">Explore</button>
+</div>
 
+<script src="static/js/common/main.js"></script>
 <%@include file="common/IncludeBottom.jsp"%>

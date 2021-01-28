@@ -32,9 +32,9 @@
 
 <div class="wrapper">
 
-        <a href="signUp">
+        <a href="explore?need=dog">
             <div class="button _1">
-                <span>sign up</span>
+                <span>explore</span>
                 <div class="back"></div>
             </div>
         </a>
@@ -53,11 +53,11 @@
             </div>
         </a>
 
-        <a href="signIn">
-            <div class="button _4">
-                <span>sign in</span>
-                <div class="back"></div>
-            </div>
-        </a>
+<%--        <a href="signIn">--%>
+<%--            <div class="button _4">--%>
+<%--                <span>sign in</span>--%>
+<%--                <div class="back"></div>--%>
+<%--            </div>--%>
+<%--        </a>--%>
     </div>
 <%@ include file="WEB-INF/jsp/common/IncludeBottom.jsp"%>

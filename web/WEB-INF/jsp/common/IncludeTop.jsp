@@ -46,45 +46,63 @@
             <div class="Header-item position-relative" id="search_div">
                 <input type="search" class="form-control input-dark" id="search_input" aria-expanded="true"/>
                 <ul class="autocomplete-results" id="search_list" style="display: none">
+                    <li class="autocomplete-item" style="pointer-events: none;">
+                        <div class="m-5 text-center anim-pulse">
+                            <svg height="24" class="octicon octicon-mark-github " viewBox="0 0 24 24" version="1.1" width="24" aria-hidden="true">
+                                <path d="M7.75 11c-.69 0-1.25.56-1.25 1.25v1.5a1.25 1.25 0 102.5 0v-1.5C9 11.56 8.44 11 7.75 11zm1.27 4.5a.469.469 0 01.48-.5h5a.47.47 0 01.48.5c-.116 1.316-.759 2.5-2.98 2.5s-2.864-1.184-2.98-2.5zm7.23-4.5c-.69 0-1.25.56-1.25 1.25v1.5a1.25 1.25 0 102.5 0v-1.5c0-.69-.56-1.25-1.25-1.25z"></path><path fill-rule="evenodd" d="M21.255 3.82a1.725 1.725 0 00-2.141-1.195c-.557.16-1.406.44-2.264.866-.78.386-1.647.93-2.293 1.677A18.442 18.442 0 0012 5c-.93 0-1.784.059-2.569.17-.645-.74-1.505-1.28-2.28-1.664a13.876 13.876 0 00-2.265-.866 1.725 1.725 0 00-2.141 1.196 23.645 23.645 0 00-.69 3.292c-.125.97-.191 2.07-.066 3.112C1.254 11.882 1 13.734 1 15.527 1 19.915 3.13 23 12 23c8.87 0 11-3.053 11-7.473 0-1.794-.255-3.647-.99-5.29.127-1.046.06-2.15-.066-3.125a23.652 23.652 0 00-.689-3.292zM20.5 14c.5 3.5-1.5 6.5-8.5 6.5s-9-3-8.5-6.5c.583-4 3-6 8.5-6s7.928 2 8.5 6z"></path>
+                            </svg>
+                            <h3><span>Loading</span><span class="AnimatedEllipsis"></span></h3>
+                        </div>
+                    </li>
+
+<%--                    <li class="autocomplete-item" aria-selected="true">Option 1</li>--%>
+<%--                    <li class="autocomplete-item">Option 2</li>--%>
+<%--                    <li class="autocomplete-item">Option 3</li>--%>
                 </ul>
             </div>
         </div>
 
-        <c:if test="${sessionScope.user.id ne 0}">
-            <div class="d-flex flex-justify-end position-relative">
-                <details class="details-reset details-overlay">
-                    <summary aria-haspopup="true">
-                        <img class="avatar avatar-5 mr-2" alt="avatar" src="https://github.com/fluidicon.png" />
-                    </summary>
-                    <div class="SelectMenu right-0">
-                        <div class="SelectMenu-modal">
-                            <div class="SelectMenu-list">
-                                <button class="SelectMenu-item flex-justify-between" role="menuitem" id="sign_info">
-                                    Sign in as
-                                    <strong class="css-truncate-target">${sessionScope.user.username}</strong>
-                                    <svg
-                                            width="8"
-                                            height="16"
-                                            viewBox="0 0 8 16"
-                                            class="octicon octicon-primitive-dot color-green-5 ml-2"
-                                            aria-hidden="true"
-                                    >
-                                        <path fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" />
-                                    </svg>
-                                </button>
-                                <hr class="SelectMenu-divider">
-                                <button class="SelectMenu-item" role="menuitem" id="profile">Your profile</button>
-                                <button class="SelectMenu-item" role="menuitem" id="address">Your delivery address</button>
-                                <button class="SelectMenu-item" role="menuitem" id="orders">Your orders</button>
-                                <button class="SelectMenu-item" role="menuitem" id="cart">Your cart</button>
-                                <hr class="SelectMenu-divider">
-                                <button class="SelectMenu-item" role="menuitem" id="sign_out">Sign out</button>
+        <div class="d-flex flex-justify-end position-relative">
+            <c:choose>
+                <c:when test="${sessionScope.user.id eq 0}">
+                    <button class="btn btn-invisible text-white" type="button" id="zlun-js-top-signin">Sign in</button>
+                    <button class="btn btn-invisible text-white border rounded-3" type="button" id="zlun-js-top-signup">Sign Up</button>
+                </c:when>
+                <c:otherwise>
+                    <details class="details-reset details-overlay">
+                        <summary aria-haspopup="true">
+                            <img class="avatar avatar-5 mr-2" alt="avatar" src="https://github.com/fluidicon.png" />
+                        </summary>
+                        <div class="SelectMenu right-0">
+                            <div class="SelectMenu-modal">
+                                <div class="SelectMenu-list">
+                                    <button class="SelectMenu-item flex-justify-between" role="menuitem" id="sign_info">
+                                        Sign in as
+                                        <strong class="css-truncate-target">${sessionScope.user.username}</strong>
+                                        <svg
+                                                width="8"
+                                                height="16"
+                                                viewBox="0 0 8 16"
+                                                class="octicon octicon-primitive-dot color-green-5 ml-2"
+                                                aria-hidden="true"
+                                        >
+                                            <path fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" />
+                                        </svg>
+                                    </button>
+                                    <hr class="SelectMenu-divider">
+                                    <button class="SelectMenu-item" role="menuitem" id="profile">Your profile</button>
+                                    <button class="SelectMenu-item" role="menuitem" id="address">Your delivery address</button>
+                                    <button class="SelectMenu-item" role="menuitem" id="orders">Your orders</button>
+                                    <button class="SelectMenu-item" role="menuitem" id="cart">Your cart</button>
+                                    <hr class="SelectMenu-divider">
+                                    <button class="SelectMenu-item" role="menuitem" id="sign_out">Sign out</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </details>
-            </div>
-        </c:if>
+                    </details>
+                </c:otherwise>
+            </c:choose>
+        </div>
     </div>
 
 <div class="zlun-content">

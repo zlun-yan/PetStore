@@ -36,4 +36,12 @@ $(document).ready(function () {
     $("#cart").click(function () {
         window.location.href="cart";
     })
+
+    $("#zlun-js-top-signin").on("click", function () {
+        window.location.href = "signIn";
+    })
+
+    $("#zlun-js-top-signup").on("click", function () {
+        window.location.href = "signUp";
+    })
 })

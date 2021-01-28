@@ -30,6 +30,10 @@ public class UserDAOImpl implements UserDAO {
 
     private static final String INSERT_USER =
             "INSERT INTO USERS(USERNAME, EMAIL, PASSWORD) VALUES(?, ?, ?)";
+    private static final String UPDATE_USERNAME_BY_ID =
+            "UPDATE USERS SET USERNAME = ? WHERE ID = ?";
+    private static final String UPDATE_EMAIL_BY_ID =
+            "UPDATE USERS SET EMAIL = ? WHERE ID = ?";
 
     @Override
     public User getUserByUsername(String username) {
@@ -168,6 +172,48 @@ public class UserDAOImpl implements UserDAO {
             connection = DBUtil.getConnection();
             preparedStatement = connection.prepareStatement(UPDATE_ADDRESS_DEFAULT_BY_ID);
             preparedStatement.setInt(1, addressId);
+            preparedStatement.setInt(2, userId);
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(null, preparedStatement, connection);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean updateUsernameById(int userId, String username) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(UPDATE_USERNAME_BY_ID);
+            preparedStatement.setString(1, username);
+            preparedStatement.setInt(2, userId);
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(null, preparedStatement, connection);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean updateEmailById(int userId, String email) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(UPDATE_EMAIL_BY_ID);
+            preparedStatement.setString(1, email);
             preparedStatement.setInt(2, userId);
 
             return preparedStatement.executeUpdate() == 1;

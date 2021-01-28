@@ -20,4 +20,8 @@ public interface UserDAO {
     boolean updateUserAddressNumById(int userId, int value);
 
     boolean updateUserAddressDefaultById(int userId, int addressId);
+
+    boolean updateUsernameById(int userId, String username);
+
+    boolean updateEmailById(int userId, String email);
 }
