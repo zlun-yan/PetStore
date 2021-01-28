@@ -15,19 +15,41 @@
 <div class="my-3">
     <c:forEach items="${sessionScope.user.orderList}" var="order">
         <div class="border d-flex" style="height: 96px">
-            <div class="p-3 flex-self-center">
-                Avatar stack
+            <div class="pl-3 flex-self-center">
+                <div class="AvatarStack AvatarStack--three-plus zlun-avatar-stack">
+                    <div class="AvatarStack-body">
+                        <c:forEach items="${order.clausesList}" var="clauses" begin="0" end="2">
+                            <img class="avatar zlun-avatar-stack" src="${clauses.itemPicURL}"/>
+                        </c:forEach>
+                        <c:forEach items="${order.clausesList}" var="clauses" begin="3">
+                            <div class="avatar avatar-more"></div>
+                            <img class="avatar zlun-avatar-stack" src="${clauses.itemPicURL}"/>
+                        </c:forEach>
+                    </div>
+                </div>
             </div>
             <div class="p-5 flex-1">&nbsp;</div>
 
             <div class="p-3 flex-self-center">
-                price
+                ${order.startDate}
             </div>
             <div class="p-3 flex-self-center">
-                num
+                <strong>
+                    <c:choose>
+                        <c:when test="${order.state eq 0}">
+                            <span class="text-red">Unpaid</span>
+                        </c:when>
+                        <c:when test="${order.state eq 1}">
+                            <span class="text-blue">In delivery</span>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="text-green">Delivered</span>
+                        </c:otherwise>
+                    </c:choose>
+                </strong>
             </div>
             <div class="p-3 flex-self-center">
-                tot
+                $${order.totPrice}
             </div>
 
             <div class="p-3 flex-self-center">

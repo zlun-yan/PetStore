@@ -25,6 +25,7 @@ $(document).ready(function () {
     var checked = 0;
     var subTot = 0;
     var itemNum = 0;
+    var cartNum = $("#cartNum").val();
     $("input[type=checkbox]").each(function () {
         var temp = this.id;
 
@@ -56,7 +57,13 @@ $(document).ready(function () {
         $("#checkout").attr("disabled", "true");
     }
 
-    var cartNum = $("#cartNum").val();
+    if (checked == cartNum) {
+        $("#all_select").prop("checked", true);
+    }
+    else {
+        $("#all_select").prop("checked", false);
+    }
+
     $("input[type=checkbox]").on("click", function (e) {
         var id = this.id;
         if (id == "all_select") {
