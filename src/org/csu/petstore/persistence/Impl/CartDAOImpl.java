@@ -18,14 +18,16 @@ public class CartDAOImpl implements CartDAO {
             "INSERT INTO CART(USER_ID, ITEM_ID, NUM) " +
                     "VALUES(?, ?, ?)";
     private static final String GET_CART_BY_USERID =
-            "SELECT ID, USER_ID, ITEM_ID, NUM " +
+            "SELECT ID, USER_ID, ITEM_ID, NUM, CHECKED " +
                     "FROM CART WHERE USER_ID = ?";
     private static final String UPDATE_CART_ITEM_NUM_BY_ID =
             "UPDATE CART SET NUM = ? WHERE ID = ?";
+    private static final String UPDATE_CART_CHECKED_BY_ID =
+            "UPDATE CART SET CHECKED = ? WHERE ID = ?";
     private static final String DELETE_CART_ITEM_BY_ID =
             "DELETE FROM CART WHERE ID = ?";
     private static final String GET_CART_RECORD_BY_ID =
-            "SELECT ID, USER_ID, ITEM_ID, NUM " +
+            "SELECT ID, USER_ID, ITEM_ID, NUM, CHECKED " +
                     "FROM CART WHERE ID = ?";
 
 
@@ -73,6 +75,12 @@ public class CartDAOImpl implements CartDAO {
                 cart.setUserId(resultSet.getInt(2));
                 cart.setItemId(resultSet.getInt(3));
                 cart.setNum(resultSet.getInt(4));
+                if (resultSet.getInt(5) == 1) {
+                    cart.setChecked(true);
+                }
+                else {
+                    cart.setChecked(false);
+                }
 
                 cartList.add(cart);
             }
@@ -144,6 +152,12 @@ public class CartDAOImpl implements CartDAO {
                 cart.setUserId(resultSet.getInt(2));
                 cart.setItemId(resultSet.getInt(3));
                 cart.setNum(resultSet.getInt(4));
+                if (resultSet.getInt(5) == 1) {
+                    cart.setChecked(true);
+                }
+                else {
+                    cart.setChecked(false);
+                }
 
                 return cart;
             }
@@ -154,5 +168,26 @@ public class CartDAOImpl implements CartDAO {
             DBUtil.close(resultSet, preparedStatement, connection);
         }
         return null;
+    }
+
+    @Override
+    public boolean updateCartCheckedById(int id, int state) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(UPDATE_CART_CHECKED_BY_ID);
+            preparedStatement.setInt(1, state);
+            preparedStatement.setInt(2, id);
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(null, preparedStatement, connection);
+        }
+
+        return false;
     }
 }

@@ -5,6 +5,7 @@ public class Cart {
     private int userId;
     private int itemId;
     private int num;
+    private boolean checked;
 
     private Item item;
 
@@ -26,6 +27,14 @@ public class Cart {
 
     public Item getItem() {
         return item;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     public void setNum(int num) {

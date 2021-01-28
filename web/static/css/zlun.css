@@ -31,6 +31,14 @@ body {
     z-index: 99;
 }
 
+.zlun-hover-box {
+    background-color: #fffbdd !important;
+    cursor: pointer;
+}
+.zlun-hover-box:hover {
+    background-color: #f1f8ff !important;
+}
+
 #search_div {
     max-width: 272px;
     width: 100%;

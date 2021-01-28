@@ -40,22 +40,48 @@ public class CartService {
         return cartList;
     }
 
+    public Cart getCartById(int id) {
+        Cart cart = cartDAO.getCartRecordById(id);
+        cart.setItem(itemDAO.getItemByItemId(cart.getItemId()));
+        return cart;
+    }
+
     public boolean insertCartByUserIdAndItemIdAndNum(int userId, int itemId, int num) {
         return cartDAO.insertCartItemByUserIdAndItemIdAndNum(userId, itemId, num);
+    }
+
+    public boolean cartChecked(int cartId, int state, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        List<Cart> cartList = user.getCartList();
+        for (Cart cart: cartList) {
+            if (cart.getId() == cartId) {
+                if (state == 1) {
+                    cart.setChecked(true);
+                }
+                else cart.setChecked(false);
+
+                break;
+            }
+        }
+
+        session.setAttribute("user", user);
+        return cartDAO.updateCartCheckedById(cartId, state);
     }
 
     /**
      * 功能: 从cart删除 加入到clauses和orders
      * @param ids
+     * @param addrId
      * @param session
      * @return
      */
-    public boolean checkout(String[] ids, HttpSession session) {
+    public boolean checkout(String[] ids, int addrId, HttpSession session) {
         User user = (User)session.getAttribute("user");
         List<Clauses> clausesList = new ArrayList<>();
         Order order = new Order();
         order.setUserId(user.getId());
         order.setState(0);
+        order.setAddrId(addrId);
         order.setStartDate("2021-1-30");
 
         double totPrice = 0;

@@ -1,4 +1,4 @@
-<%@ page import="org.csu.petstore.domain.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: ZlunYan
   Date: 2021/1/26
@@ -19,7 +19,16 @@
         <c:forEach items="${sessionScope.user.cartList}" var="cart">
             <div class="border d-flex" style="height: 96px">
                 <div class="p-3 flex-self-center">
-                    <label style="cursor: pointer"><input type="checkbox" style="cursor: pointer" id="check_${cart.id}"/>&nbsp;</label>
+                    <label style="cursor: pointer">
+                        <c:choose>
+                            <c:when test="${cart.checked}">
+                                <input type="checkbox" style="cursor: pointer" id="check_${cart.id}" checked="true"/>
+                            </c:when>
+                            <c:otherwise>
+                                <input type="checkbox" style="cursor: pointer" id="check_${cart.id}"/>
+                            </c:otherwise>
+                        </c:choose>
+                        &nbsp;</label>
                 </div>
                 <div class="p-2" style="width: 96px">
                     <img src="${cart.item.picUrl}" class="zlun-img">
@@ -33,19 +42,19 @@
                         <div class="flex-self-center">
                             <c:choose>
                                 <c:when test="${cart.num eq cart.item.num}">
-                                    <button class="btn btn-sm" type="button" id="add_${cart.id}" disabled="disabled">+</button>
+                                    <button class="btn btn-sm zlun-js-add-button" type="button" id="add_${cart.id}" disabled="disabled">+</button>
                                 </c:when>
                                 <c:otherwise>
-                                    <button class="btn btn-sm" type="button" id="add_${cart.id}">+</button>
+                                    <button class="btn btn-sm zlun-js-add-button" type="button" id="add_${cart.id}">+</button>
                                 </c:otherwise>
                             </c:choose>
                             <input class="form-control input-sm" type="text" value="${cart.num}" style="width: 70px" id="num_${cart.id}"/>
                             <c:choose>
                                 <c:when test="${cart.num eq 1}">
-                                    <button class="btn btn-sm" type="button" id="sub_${cart.id}" disabled="disabled">-</button>
+                                    <button class="btn btn-sm zlun-js-sub-button" type="button" id="sub_${cart.id}" disabled="disabled">-</button>
                                 </c:when>
                                 <c:otherwise>
-                                    <button class="btn btn-sm" type="button" id="sub_${cart.id}">-</button>
+                                    <button class="btn btn-sm zlun-js-sub-button" type="button" id="sub_${cart.id}">-</button>
                                 </c:otherwise>
                             </c:choose>
                         </div>

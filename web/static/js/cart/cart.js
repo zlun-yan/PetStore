@@ -25,6 +25,37 @@ $(document).ready(function () {
     var checked = 0;
     var subTot = 0;
     var itemNum = 0;
+    $("input[type=checkbox]").each(function () {
+        var temp = this.id;
+
+        temp = temp.split("_");
+        if (temp[0] == "check") {
+            if ($(this).prop('checked')) {
+                var num = parseInt($("#num_" + temp[1]).val());
+                var tot = parseFloat($("#tot_" + temp[1]).text());
+                checked ++;
+                itemNum += num;
+                subTot += tot;
+            }
+        }
+    })
+
+    if (itemNum > 1) {
+        $("#order_num").text(itemNum + " items");
+    }
+    else {
+        $("#order_num").text(itemNum + " item");
+    }
+
+    $("#order_price").text(subTot);
+
+    if (checked >= 1) {
+        $("#checkout").removeAttr("disabled");
+    }
+    else {
+        $("#checkout").attr("disabled", "true");
+    }
+
     var cartNum = $("#cartNum").val();
     $("input[type=checkbox]").on("click", function (e) {
         var id = this.id;
@@ -45,6 +76,20 @@ $(document).ready(function () {
                         checked ++;
                         itemNum += num;
                         subTot += tot;
+
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "cartCheck",
+                            timeout: 2000,
+                            data: {
+                                id: temp[1],
+                                state: 1
+                            },
+                            error : function() {
+
+                            }
+                        });
                     }
                 })
             }
@@ -53,6 +98,27 @@ $(document).ready(function () {
                 checked = 0;
                 itemNum = 0;
                 subTot = 0;
+
+                $("input[type=checkbox]").each(function () {
+                    var temp = this.id;
+
+                    temp = temp.split("_");
+                    if (temp[0] == "check") {
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "cartCheck",
+                            timeout: 2000,
+                            data: {
+                                id: temp[1],
+                                state: 0
+                            },
+                            error : function() {
+
+                            }
+                        });
+                    }
+                })
             }
         }
         else {
@@ -63,11 +129,39 @@ $(document).ready(function () {
                 checked ++;
                 itemNum += num;
                 subTot += tot;
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "cartCheck",
+                    timeout: 2000,
+                    data: {
+                        id: id[1],
+                        state: 1
+                    },
+                    error : function() {
+
+                    }
+                });
             }
             else {
                 checked --;
                 itemNum -= num;
                 subTot -= tot;
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "cartCheck",
+                    timeout: 2000,
+                    data: {
+                        id: id[1],
+                        state: 0
+                    },
+                    error : function() {
+
+                    }
+                });
             }
 
             if (checked == cartNum) {
@@ -95,104 +189,106 @@ $(document).ready(function () {
         }
     })
 
-    $("button").on("click", function () {
+    $(".zlun-js-add-button").on("click", function () {
         var id = this.id;
         id = id.split("_");
 
-        if (id[0] == "add") {
-            var numInput = $("#num_" + id[1]);
-            var totSpan = $("#tot_" + id[1]);
+        var numInput = $("#num_" + id[1]);
+        var totSpan = $("#tot_" + id[1]);
 
-            var price = parseFloat($("#price_" + id[1]).text());
-            var num = parseInt(numInput.val());
-            var maxNum = parseInt($("#maxNum_" + id[1]).text());
-            num++;
+        var price = parseFloat($("#price_" + id[1]).text());
+        var num = parseInt(numInput.val());
+        var maxNum = parseInt($("#maxNum_" + id[1]).text());
+        num++;
 
-            if (num == maxNum) {
-                $(this).attr("disabled", "true");
-            }
-            if (num != 1) {
-                $("#sub_" + id[1]).removeAttr("disabled");
-            }
-
-            numInput.val(num);
-            totSpan.text(num * price);
-
-            if ($("#check_" + id[1]).prop('checked')) {
-                itemNum ++;
-                subTot += price;
-
-                if (itemNum > 1) {
-                    $("#order_num").text(itemNum + " items");
-                }
-                else {
-                    $("#order_num").text(itemNum + " item");
-                }
-
-                $("#order_price").text(subTot);
-            }
-
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "cartNumChange",
-                timeout: 2000,
-                data: {
-                    id: id[1],
-                    num: num
-                },
-                error : function() {
-
-                }
-            });
+        if (num == maxNum) {
+            $(this).attr("disabled", "true");
         }
-        else if (id[0] == "sub") {
-            var numInput = $("#num_" + id[1]);
-            var totSpan = $("#tot_" + id[1]);
-
-            var price = parseFloat($("#price_" + id[1]).text());
-            var num = parseInt(numInput.val());
-            var maxNum = parseInt($("#maxNum_" + id[1]).text());
-            num--;
-
-            if (num == 1) {
-                $(this).attr("disabled", "true");
-            }
-            if (num != maxNum) {
-                $("#add_" + id[1]).removeAttr("disabled");
-            }
-
-            numInput.val(num);
-            totSpan.text(num * price);
-
-            if ($("#check_" + id[1]).prop('checked')) {
-                itemNum --;
-                subTot -= price;
-
-                if (itemNum > 1) {
-                    $("#order_num").text(itemNum + " items");
-                }
-                else {
-                    $("#order_num").text(itemNum + " item");
-                }
-
-                $("#order_price").text(subTot);
-            }
-
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "cartNumChange",
-                timeout: 2000,
-                data: {
-                    id: id[1],
-                    num: num
-                },
-                error : function() {
-
-                }
-            });
+        if (num != 1) {
+            $("#sub_" + id[1]).removeAttr("disabled");
         }
+
+        numInput.val(num);
+        totSpan.text(num * price);
+
+        if ($("#check_" + id[1]).prop('checked')) {
+            itemNum ++;
+            subTot += price;
+
+            if (itemNum > 1) {
+                $("#order_num").text(itemNum + " items");
+            }
+            else {
+                $("#order_num").text(itemNum + " item");
+            }
+
+            $("#order_price").text(subTot);
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "cartNumChange",
+            timeout: 2000,
+            data: {
+                id: id[1],
+                num: num
+            },
+            error : function() {
+
+            }
+        });
+    })
+
+    $(".zlun-js-sub-button").on("click", function () {
+        var id = this.id;
+        id = id.split("_");
+
+        var numInput = $("#num_" + id[1]);
+        var totSpan = $("#tot_" + id[1]);
+
+        var price = parseFloat($("#price_" + id[1]).text());
+        var num = parseInt(numInput.val());
+        var maxNum = parseInt($("#maxNum_" + id[1]).text());
+        num--;
+
+        if (num == 1) {
+            $(this).attr("disabled", "true");
+        }
+        if (num != maxNum) {
+            $("#add_" + id[1]).removeAttr("disabled");
+        }
+
+        numInput.val(num);
+        totSpan.text(num * price);
+
+        if ($("#check_" + id[1]).prop('checked')) {
+            itemNum --;
+            subTot -= price;
+
+            if (itemNum > 1) {
+                $("#order_num").text(itemNum + " items");
+            }
+            else {
+                $("#order_num").text(itemNum + " item");
+            }
+
+            $("#order_price").text(subTot);
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "cartNumChange",
+            timeout: 2000,
+            data: {
+                id: id[1],
+                num: num
+            },
+            error : function() {
+
+            }
+        });
     })
 
     $("input[type=text]").bind("input propertychange", function () {
@@ -286,20 +382,12 @@ $(document).ready(function () {
             }
         })
 
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "checkout",
-            timeout: 2000,
-            data: {
-                ids: cartIds.join(";")
-            },
-            success: function() {
-                window.location.reload();
-            },
-            error : function() {
-
-            }
-        });
+        var ids = cartIds.join(";");
+        var temp = $("<form action='checkout' method='post'></form>");
+        var param = $("<input type='hidden' name='ids' value='" + ids + "'>")
+        temp.append(param);
+        $("body").append(temp);
+        temp.submit();
+        temp.remove();
     })
 })

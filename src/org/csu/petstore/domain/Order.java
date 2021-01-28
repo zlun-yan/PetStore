@@ -4,9 +4,12 @@ public class Order {
     private int id;
     private int userId;
     private int state;
+    private int addrId;
     private double totPrice;
     private String startDate;
     private String endDate;
+
+    private Address address;
 
     public int getUserId() {
         return userId;
@@ -30,6 +33,22 @@ public class Order {
 
     public String getStartDate() {
         return startDate;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public int getAddrId() {
+        return addrId;
+    }
+
+    public void setAddrId(int addrId) {
+        this.addrId = addrId;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public void setUserId(int userId) {

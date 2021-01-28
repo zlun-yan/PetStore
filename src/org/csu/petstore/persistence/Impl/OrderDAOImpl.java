@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class OrderDAOImpl implements OrderDAO {
     private static final String INSERT_ORDER =
-            "INSERT INTO ORDERS(USER_ID, STATE, TOTPRICE, STATE_DATE) VALUES(?, ?, ?, ?)";
+            "INSERT INTO ORDERS(USER_ID, STATE, ADDR_ID, TOTPRICE, STATE_DATE) VALUES(?, ?, ?, ?, ?)";
     private static final String UPDATE_ORDER_STATE_BY_ID =
             "UPDATE ORDERS SET STATE = ? WHERE ID = ?";
     private static final String UPDATE_ORDER_END_DATE_BY_ID =
@@ -30,8 +30,9 @@ public class OrderDAOImpl implements OrderDAO {
             preparedStatement = connection.prepareStatement(INSERT_ORDER, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, order.getUserId());
             preparedStatement.setInt(2, order.getState());
-            preparedStatement.setBigDecimal(3, new BigDecimal(Double.valueOf(order.getTotPrice())));
-            preparedStatement.setString(4, order.getStartDate());
+            preparedStatement.setInt(3, order.getAddrId());
+            preparedStatement.setBigDecimal(4, new BigDecimal(Double.valueOf(order.getTotPrice())));
+            preparedStatement.setString(5, order.getStartDate());
 
             preparedStatement.executeUpdate();
             resultSet = preparedStatement.getGeneratedKeys();

@@ -14,4 +14,12 @@ public interface CartDAO {
     boolean deleteCartItemById(int id);
 
     Cart getCartRecordById(int id);
+
+    /**
+     * 0未选择 1已选择
+     * @param id
+     * @param state
+     * @return
+     */
+    boolean updateCartCheckedById(int id, int state);
 }
