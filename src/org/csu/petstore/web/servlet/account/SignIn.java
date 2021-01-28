@@ -7,6 +7,7 @@ import org.csu.petstore.persistence.Impl.UserDAOImpl;
 import org.csu.petstore.persistence.UserDAO;
 import org.csu.petstore.service.AddressService;
 import org.csu.petstore.service.CartService;
+import org.csu.petstore.service.OrderService;
 import org.csu.petstore.service.UserService;
 
 import javax.servlet.ServletException;
@@ -24,6 +25,7 @@ public class SignIn extends HttpServlet {
     private UserDAO userDAO;
     private CartService cartService;
     private AddressService addressService;
+    private OrderService orderService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,8 +49,11 @@ public class SignIn extends HttpServlet {
             if (user.getPassword().equals(password)) {
                 addressService = new AddressService();
                 cartService = new CartService();
+                orderService = new OrderService();
                 user.setAddressList(addressService.getAddressListById(user.getId()));
                 user.setCartList(cartService.getCartListByUserId(user.getId()));
+                user.setOrderList(orderService.getOrderListByUserId(user.getId()));
+
 
                 HttpSession session = req.getSession();
                 session.setAttribute("user", user);

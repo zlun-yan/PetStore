@@ -1,5 +1,7 @@
 package org.csu.petstore.domain;
 
+import java.util.List;
+
 public class Order {
     private int id;
     private int userId;
@@ -9,7 +11,7 @@ public class Order {
     private String startDate;
     private String endDate;
 
-    private Address address;
+    private List<Clauses> clausesList;
 
     public int getUserId() {
         return userId;
@@ -35,8 +37,8 @@ public class Order {
         return startDate;
     }
 
-    public Address getAddress() {
-        return address;
+    public List<Clauses> getClausesList() {
+        return clausesList;
     }
 
     public int getAddrId() {
@@ -47,8 +49,8 @@ public class Order {
         this.addrId = addrId;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setClausesList(List<Clauses> clausesList) {
+        this.clausesList = clausesList;
     }
 
     public void setUserId(int userId) {

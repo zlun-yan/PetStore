@@ -108,6 +108,11 @@ public class CartService {
             clausesDAO.insertClauses(clauses);
         }
 
+        order.setClausesList(clausesList);
+        user.getOrderList().add(order);
+        user.setCartList(getCartListByUserId(user.getId()));
+        session.setAttribute("user", user);
+
         return true;
     }
 }

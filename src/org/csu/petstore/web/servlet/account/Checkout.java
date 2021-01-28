@@ -22,16 +22,18 @@ public class Checkout extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        String id = req.getParameter("ids");
         String[] ids = req.getParameter("ids").split(";");
+        int addrId = Integer.parseInt(req.getParameter("addr"));
         cartService = new CartService();
 
         JSONObject jsonObject = new JSONObject();
-//        if (cartService.checkout(ids, session)) {
-//            jsonObject.put("state", "success");
-//        }
-//        else {
-//            jsonObject.put("state", "fail");
-//        }
+        if (cartService.checkout(ids, addrId, session)) {
+            jsonObject.put("state", "success");
+        }
+        else {
+            jsonObject.put("state", "fail");
+        }
 
         resp.getWriter().print(jsonObject);
     }

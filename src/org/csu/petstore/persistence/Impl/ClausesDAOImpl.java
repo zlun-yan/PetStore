@@ -29,7 +29,7 @@ public class ClausesDAOImpl implements ClausesDAO {
         try {
             connection = DBUtil.getConnection();
             preparedStatement = connection.prepareStatement(INSERT_CLAUSES);
-            preparedStatement.setInt(1, clauses.getId());
+            preparedStatement.setInt(1, clauses.getOrderId());
             preparedStatement.setString(2, clauses.getItemName());
             preparedStatement.setBigDecimal(3, new BigDecimal(Double.valueOf(clauses.getItemPrice())));
             preparedStatement.setString(4, clauses.getItemPicURL());

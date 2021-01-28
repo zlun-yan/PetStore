@@ -2,6 +2,8 @@ package org.csu.petstore.persistence;
 
 import org.csu.petstore.domain.Order;
 
+import java.util.List;
+
 public interface OrderDAO {
     /**
      * 传入的order应设置 userId state totPrice stateDate
@@ -25,4 +27,6 @@ public interface OrderDAO {
      * @return
      */
     boolean updateOrderEndDateById(int id, String endDate);
+
+    List<Order> getOrderListByUserId(int userId);
 }

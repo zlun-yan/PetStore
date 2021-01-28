@@ -14,6 +14,7 @@ public class User {
 
     private List<Address> addressList;
     private List<Cart> cartList;
+    private List<Order> orderList;
 
     public String getEmail() {
         return email;
@@ -49,6 +50,14 @@ public class User {
 
     public List<Cart> getCartList() {
         return cartList;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 
     public void setId(int id) {

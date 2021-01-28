@@ -38,7 +38,7 @@ $(document).ready(function () {
         totPrice += tot;
     })
 
-    ids.join(";");
+    ids = ids.join(";");
     if (totItem > 1) {
         $("#order_num").text(totItem + " items");
     }
@@ -58,14 +58,30 @@ $(document).ready(function () {
         $(this).removeClass("zlun-hover-box");
     })
 
+    $("#add_addr").on("click", function () {
+        window.location.href = "info?need=address";
+    })
+
     $("#confirm").on("click", function () {
 
-        // 还要选地址
-        // var temp = $("<form action='doCheckout' method='post'></form>");
-        // var param = $("<input type='hidden' name='ids' value='" + ids + "'>")
-        // temp.append(param);
-        // $("body").append(temp);
-        // temp.submit();
-        // temp.remove();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "doCheckout",
+            timeout: 2000,
+            data: {
+                ids: ids,
+                addr: default_addr
+            },
+            success: function(data) {
+                var state = data['state'];
+                if (state == "success") {
+                    window.location.href = "info?need=orders"
+                }
+            },
+            error : function() {
+
+            }
+        });
     })
 })

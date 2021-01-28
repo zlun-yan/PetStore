@@ -22,7 +22,7 @@
                 <span id="oper-info">
             Select delivery address
         </span>
-                <button type="button" class="btn btn-sm primary flash-action">Add new address</button>
+                <button type="button" class="btn btn-sm primary flash-action" id="add_addr">Add new address</button>
             </div>
         </div>
 
@@ -33,9 +33,6 @@
                         <div class="f4 text-bold">
                                 ${address.city} ${address.province}
                                     <span class="Label mr-2 float-right">Default</span>
-<%--                            <p class="text-right">--%>
-<%--                                --%>
-<%--                            </p>--%>
                         </div>
                         <div class="f4 text-bold">Receiver: ${address.name}</div>
                         <hr>
