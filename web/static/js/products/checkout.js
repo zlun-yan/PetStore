@@ -84,4 +84,8 @@ $(document).ready(function () {
             }
         });
     })
+
+    $("#zlun-js-checkout-address").on("click", function () {
+        window.location.href = "info?need=address"
+    })
 })
