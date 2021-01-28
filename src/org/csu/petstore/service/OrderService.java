@@ -24,4 +24,10 @@ public class OrderService {
         }
         return orderList;
     }
+
+    public Order getOrderById(int id) {
+        Order order = orderDAO.getOrderById(id);
+        order.setClausesList(clausesDAO.getClausesListByOrderId(id));
+        return order;
+    }
 }

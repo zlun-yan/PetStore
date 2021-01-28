@@ -16,17 +16,19 @@
     <c:forEach items="${sessionScope.user.orderList}" var="order">
         <div class="border d-flex" style="height: 96px">
             <div class="pl-3 flex-self-center">
-                <div class="AvatarStack AvatarStack--three-plus zlun-avatar-stack">
-                    <div class="AvatarStack-body">
-                        <c:forEach items="${order.clausesList}" var="clauses" begin="0" end="2">
-                            <img class="avatar zlun-avatar-stack" src="${clauses.itemPicURL}"/>
-                        </c:forEach>
-                        <c:forEach items="${order.clausesList}" var="clauses" begin="3">
-                            <div class="avatar avatar-more"></div>
-                            <img class="avatar zlun-avatar-stack" src="${clauses.itemPicURL}"/>
-                        </c:forEach>
+                <a href="orderInfo?orderId=${order.id}">
+                    <div class="AvatarStack AvatarStack--three-plus zlun-avatar-stack">
+                        <div class="AvatarStack-body">
+                            <c:forEach items="${order.clausesList}" var="clauses" begin="0" end="2">
+                                <img class="avatar zlun-avatar-stack" src="${clauses.itemPicURL}"/>
+                            </c:forEach>
+                            <c:forEach items="${order.clausesList}" var="clauses" begin="3">
+                                <div class="avatar avatar-more"></div>
+                                <img class="avatar zlun-avatar-stack" src="${clauses.itemPicURL}"/>
+                            </c:forEach>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="p-5 flex-1">&nbsp;</div>
 

@@ -2,6 +2,7 @@ package org.csu.petstore.persistence.Impl;
 
 import com.mysql.jdbc.Statement;
 import org.csu.petstore.domain.Address;
+import org.csu.petstore.domain.User;
 import org.csu.petstore.persistence.AddressDAO;
 import org.csu.petstore.persistence.DBUtil;
 
@@ -19,6 +20,9 @@ public class AddressDAOImpl implements AddressDAO {
     private static final String INSERT_USER =
             "INSERT INTO ADDRESS(USER_ID, PROVINCE, CITY, DISTRICT, ADDRESS_CODE, DETAILS, NAME, PHONE) " +
                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String GET_ADDRESS_BY_ID =
+            "SELECT ID, USER_ID, PROVINCE, CITY, DISTRICT, ADDRESS_CODE, DETAILS, NAME, PHONE " +
+                    "FROM ADDRESS WHERE ID = ?";
 
     @Override
     public int insertAddress(Address address) {
@@ -53,6 +57,41 @@ public class AddressDAOImpl implements AddressDAO {
         }
 
         return 0;
+    }
+
+    @Override
+    public Address getAddressById(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        Address address = new Address();
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(GET_ADDRESS_BY_ID);
+            preparedStatement.setInt(1, id);
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                address.setId(resultSet.getInt(1));
+                address.setUserId(resultSet.getInt(2));
+                address.setProvince(resultSet.getString(3));
+                address.setCity(resultSet.getString(4));
+                address.setDistrict(resultSet.getString(5));
+                address.setAddressCode(resultSet.getInt(6));
+                address.setDetails(resultSet.getString(7));
+                address.setName(resultSet.getString(8));
+                address.setPhone(resultSet.getString(9));
+
+                return address;
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(resultSet, preparedStatement, connection);
+        }
+        return null;
     }
 
     public List<Address> getAddressByUserId(int userId) {

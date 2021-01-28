@@ -29,4 +29,6 @@ public interface OrderDAO {
     boolean updateOrderEndDateById(int id, String endDate);
 
     List<Order> getOrderListByUserId(int userId);
+
+    Order getOrderById(int id);
 }

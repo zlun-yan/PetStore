@@ -57,7 +57,7 @@ $(document).ready(function () {
         $("#checkout").attr("disabled", "true");
     }
 
-    if (checked == cartNum) {
+    if (checked != 0 && checked == cartNum) {
         $("#all_select").prop("checked", true);
     }
     else {
@@ -171,7 +171,7 @@ $(document).ready(function () {
                 });
             }
 
-            if (checked == cartNum) {
+            if (checked != 0 && checked == cartNum) {
                 $("#all_select").prop("checked", true);
             }
             else {

@@ -14,7 +14,9 @@ import org.csu.petstore.persistence.ItemDAO;
 import org.csu.petstore.persistence.OrderDAO;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CartService {
@@ -82,7 +84,11 @@ public class CartService {
         order.setUserId(user.getId());
         order.setState(0);
         order.setAddrId(addrId);
-        order.setStartDate("2021-1-30");
+
+        Date date = new Date();
+        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr = dateFormat.format(date);
+        order.setStartDate(dateStr);
 
         double totPrice = 0;
         for (String id: ids) {

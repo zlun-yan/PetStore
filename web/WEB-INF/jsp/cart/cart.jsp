@@ -30,7 +30,7 @@
                         </c:choose>
                         &nbsp;</label>
                 </div>
-                <div class="p-2" style="width: 96px">
+                <div class="p-2 flex-self-center" style="width: 96px">
                     <img src="${cart.item.picUrl}" class="zlun-img">
                 </div>
                 <div class="p-3 flex-self-center">${cart.item.name}</div>

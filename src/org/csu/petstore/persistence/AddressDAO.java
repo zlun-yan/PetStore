@@ -8,4 +8,6 @@ public interface AddressDAO {
     List<Address> getAddressByUserId(int userId);
 
     int insertAddress(Address address);
+
+    Address getAddressById(int id);
 }
