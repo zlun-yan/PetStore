@@ -137,4 +137,12 @@ public class CartService {
 
         return cartDAO.deleteCartItemById(id);
     }
+
+    public Cart getCartRecordByItemIdAndUserId(int itemId, int userId) {
+        return cartDAO.getCartRecordByItemIdAndUserId(itemId, userId);
+    }
+
+    public boolean updateCartItemNumById(int id, int num) {
+        return cartDAO.updateCartItemNumById(id, num);
+    }
 }

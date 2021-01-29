@@ -1,5 +1,6 @@
 package org.csu.petstore.service;
 
+import org.csu.petstore.domain.Cart;
 import org.csu.petstore.domain.User;
 import org.csu.petstore.persistence.Impl.UserDAOImpl;
 import org.csu.petstore.persistence.UserDAO;
@@ -31,7 +32,14 @@ public class UserService {
     }
 
     public boolean addToCart(User user, int itemId, int num, HttpSession session) {
-        cartService.insertCartByUserIdAndItemIdAndNum(user.getId(), itemId, num);
+        Cart cart = cartService.getCartRecordByItemIdAndUserId(itemId, user.getId());
+        if (cart == null) {
+            cartService.insertCartByUserIdAndItemIdAndNum(user.getId(), itemId, num);
+        }
+        else {
+            cartService.updateCartItemNumById(cart.getId(), cart.getNum() + num);
+        }
+
         user.setCartList(cartService.getCartListByUserId(user.getId()));
         session.setAttribute("user", user);
         return true;

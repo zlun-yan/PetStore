@@ -22,4 +22,6 @@ public interface CartDAO {
      * @return
      */
     boolean updateCartCheckedById(int id, int state);
+
+    Cart getCartRecordByItemIdAndUserId(int itemId, int userId);
 }

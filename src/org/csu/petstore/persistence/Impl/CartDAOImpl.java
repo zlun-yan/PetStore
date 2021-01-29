@@ -29,6 +29,9 @@ public class CartDAOImpl implements CartDAO {
     private static final String GET_CART_RECORD_BY_ID =
             "SELECT ID, USER_ID, ITEM_ID, NUM, CHECKED " +
                     "FROM CART WHERE ID = ?";
+    private static final String GET_CART_RECORD_BY_ITEM_ID_AND_USER_ID =
+            "SELECT ID, USER_ID, ITEM_ID, NUM, CHECKED " +
+                    "FROM CART WHERE ITEM_ID = ? AND USER_ID = ?";
 
 
     @Override
@@ -189,5 +192,42 @@ public class CartDAOImpl implements CartDAO {
         }
 
         return false;
+    }
+
+    @Override
+    public Cart getCartRecordByItemIdAndUserId(int itemId, int userId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        Cart cart = new Cart();
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(GET_CART_RECORD_BY_ITEM_ID_AND_USER_ID);
+            preparedStatement.setInt(1, itemId);
+            preparedStatement.setInt(2, userId);
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                cart.setId(resultSet.getInt(1));
+                cart.setUserId(resultSet.getInt(2));
+                cart.setItemId(resultSet.getInt(3));
+                cart.setNum(resultSet.getInt(4));
+                if (resultSet.getInt(5) == 1) {
+                    cart.setChecked(true);
+                }
+                else {
+                    cart.setChecked(false);
+                }
+
+                return cart;
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(resultSet, preparedStatement, connection);
+        }
+        return null;
     }
 }
