@@ -26,6 +26,20 @@
     </span>
         </div>
 
+        <div class="d-flex text-center" style="height: 68px">
+            <div class="p-3 flex-self-center">
+                <strong>Product information</strong>
+            </div>
+            <div class="p-5 flex-1">&nbsp;</div>
+
+            <div class="p-3 flex-self-center" style="width: 70px">
+                <strong>Quantity</strong>
+            </div>
+            <div class="p-3 flex-self-center" style="width: 100px">
+                <strong>Unit price</strong>
+            </div>
+        </div>
+
         <c:forEach items="${requestScope.order.clausesList}" var="item">
             <div class="border d-flex" style="height: 96px">
                 <div class="p-2 flex-self-center" style="width: 96px">
@@ -35,8 +49,8 @@
 
                 <div class="p-5 flex-1">&nbsp;</div>
 
-                <div class="p-3 flex-self-center">${item.num}</div>
-                <div class="p-3 flex-self-center">${item.itemPrice}</div>
+                <div class="p-3 flex-self-center" style="width: 70px">${item.num}</div>
+                <div class="p-3 flex-self-center" style="width: 100px">${item.itemPrice}</div>
             </div>
         </c:forEach>
 

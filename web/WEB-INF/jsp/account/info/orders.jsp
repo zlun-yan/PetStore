@@ -23,6 +23,26 @@
     </c:when>
     <c:otherwise>
         <div class="my-3">
+            <div class="d-flex text-center" style="height: 68px">
+                <div class="p-3 flex-self-center">
+                    <strong>Product information</strong>
+                </div>
+                <div class="p-5 flex-1">&nbsp;</div>
+
+                <div class="p-3 flex-self-center" style="width: 105px">
+                    <strong>Start date</strong>
+                </div>
+                <div class="p-3 flex-self-center" style="width: 100px">
+                    <strong>State</strong>
+                </div>
+                <div class="p-3 flex-self-center" style="width: 105px">
+                    <strong>Total price</strong>
+                </div>
+                <div class="p-3 flex-self-center" style="width: 200px">
+                    <strong>Operation</strong>
+                </div>
+            </div>
+
             <c:forEach items="${sessionScope.user.orderList}" var="order">
                 <div class="border d-flex" style="height: 96px">
                     <div class="pl-3 flex-self-center">
@@ -42,10 +62,10 @@
                     </div>
                     <div class="p-5 flex-1">&nbsp;</div>
 
-                    <div class="p-3 flex-self-center">
+                    <div class="p-3 flex-self-center" style="width: 105px">
                             ${order.startDate}
                     </div>
-                    <div class="p-3 flex-self-center">
+                    <div class="p-3 flex-self-center" style="width: 100px">
                         <strong>
                             <c:choose>
                                 <c:when test="${order.state eq 0}">
@@ -60,7 +80,7 @@
                             </c:choose>
                         </strong>
                     </div>
-                    <div class="p-3 flex-self-center">
+                    <div class="p-3 flex-self-center" style="width: 105px">
                         $${order.totPrice}
                     </div>
 

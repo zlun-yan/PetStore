@@ -27,17 +27,42 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="zlun-js-cart-empty" value="1">
     </c:when>
     <c:otherwise>
+        <input type="hidden" id="zlun-js-cart-empty" value="0">
         <div class="m-3">
             <div class="box-shadow-medium p-3">
                 <strong>Cart</strong>
             </div>
 
             <div class="my-3">
+                <div class="d-flex text-center" style="height: 68px">
+                    <div class="p-3 flex-self-center" style="width: 53px">
+                        &nbsp;
+                    </div>
+                    <div class="p-2 flex-self-center">
+                        <strong>Product information</strong>
+                    </div>
+                    <div class="p-5 flex-1">&nbsp;</div>
+                    <div class="p-3 flex-self-center" style="width: 94px">
+                        <strong>Unit price</strong>
+                    </div>
+                    <div class="p-3 flex-self-center" style="width: 175px">
+                        <strong>Quantity</strong>
+                    </div>
+                    <div class="p-3 flex-self-center" style="width: 98px">
+                        <strong>Total price</strong>
+                    </div>
+                    <div class="p-3 flex-self-center" style="width: 200px">
+                        <strong>Operation</strong>
+                    </div>
+                </div>
+
+
                 <c:forEach items="${sessionScope.user.cartList}" var="cart">
                     <div class="border d-flex" style="height: 96px">
-                        <div class="p-3 flex-self-center">
+                        <div class="p-3 flex-self-center" style="width: 53px">
                             <label style="cursor: pointer">
                                 <c:choose>
                                     <c:when test="${cart.checked}">
@@ -55,8 +80,8 @@
                         <div class="p-3 flex-self-center">${cart.item.name}</div>
                         <div class="p-5 flex-1">&nbsp;</div>
 
-                        <div class="p-3 flex-self-center">$<span id="price_${cart.id}">${cart.item.price}</span></div>
-                        <div class="p-3 flex-self-center">
+                        <div class="p-3 flex-self-center" style="width: 94px">$<span id="price_${cart.id}">${cart.item.price}</span></div>
+                        <div class="p-3 flex-self-center" style="width: 175px">
                             <div class="d-flex flex-column">
                                 <div class="flex-self-center">
                                     <c:choose>
@@ -82,16 +107,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="p-3 flex-self-center">
+                        <div class="p-3 flex-self-center" style="width: 98px">
                             <strong class="text-red">
                                 $<span id="tot_${cart.id}">${cart.item.price * cart.num}</span>
                             </strong>
                         </div>
 
-                        <div class="p-3 flex-self-center">
+                        <div class="p-3 flex-self-center" style="width: 95px">
                             <button class="btn btn-sm btn-danger" type="button" id="delete_${cart.id}">Delete</button>
                         </div>
-                        <div class="p-3 flex-self-center">
+                        <div class="p-3 flex-self-center" style="width: 95px;">
                             <button class="btn btn-sm btn-primary" type="button" id="favorite_${cart.itemId}">Favorite</button>
                         </div>
                     </div>
