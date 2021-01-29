@@ -99,7 +99,7 @@
                 <c:otherwise>
                     <details class="details-reset details-overlay">
                         <summary aria-haspopup="true">
-                            <img class="avatar avatar-5 mr-2" alt="avatar" src="https://github.com/fluidicon.png" />
+                            <img class="avatar avatar-5 mr-2" alt="avatar" src="${sessionScope.user.avatar_url}" />
                         </summary>
                         <div class="SelectMenu right-0">
                             <div class="SelectMenu-modal">

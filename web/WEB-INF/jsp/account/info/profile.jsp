@@ -22,7 +22,7 @@
     <div class="p-responsive mt-4 mt-md-8">
         <div class="mb-4 mb-md-8 container-md text-center">
             <div class="CircleBadge CircleBadge--large mx-auto" style="max-width: 128px;">
-                <img src="https://github.com/fluidicon.png" alt="Travis CI" class="CircleBadge-icon" />
+                <img src="${sessionScope.user.avatar_url}" alt="Travis CI" class="CircleBadge-icon" />
             </div>
         </div>
 

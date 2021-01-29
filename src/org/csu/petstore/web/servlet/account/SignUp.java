@@ -25,6 +25,7 @@ public class SignUp extends HttpServlet {
         user.setUsername(req.getParameter("user[login]"));
         user.setEmail(req.getParameter("user[email]"));
         user.setPassword(req.getParameter("user[password]"));
+        user.setAvatar_url("static/images/avatars/boy.png");
 
         JSONObject jsonObject = new JSONObject();
         if (userDAO.insertUser(user)) {

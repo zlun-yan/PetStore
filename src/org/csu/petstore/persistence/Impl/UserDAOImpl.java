@@ -29,7 +29,7 @@ public class UserDAOImpl implements UserDAO {
             "UPDATE USERS SET DEFAULT_ADDR_ID = ? WHERE ID = ?";
 
     private static final String INSERT_USER =
-            "INSERT INTO USERS(USERNAME, EMAIL, PASSWORD) VALUES(?, ?, ?)";
+            "INSERT INTO USERS(USERNAME, EMAIL, PASSWORD, AVATAR_URL) VALUES(?, ?, ?, ?)";
     private static final String UPDATE_USERNAME_BY_ID =
             "UPDATE USERS SET USERNAME = ? WHERE ID = ?";
     private static final String UPDATE_EMAIL_BY_ID =
