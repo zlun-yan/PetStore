@@ -31,4 +31,6 @@ public interface OrderDAO {
     List<Order> getOrderListByUserId(int userId);
 
     Order getOrderById(int id);
+
+    boolean deleteOrderById(int id);
 }

@@ -19,6 +19,8 @@ public class ClausesDAOImpl implements ClausesDAO {
     private static final String GET_CLAUSES_LIST_BY_ORDER_ID =
             "SELECT ID, ORDER_ID, ITEM_NAME, ITEM_PRICE, ITEM_URL, NUM " +
                     "FROM CLAUSES WHERE ORDER_ID = ?";
+    private static final String DELETE_CLAUSES_BY_ID =
+            "DELETE FROM CLAUSES WHERE ORDER_ID = ?";
 
     @Override
     public boolean insertClauses(Clauses clauses) {
@@ -78,5 +80,25 @@ public class ClausesDAOImpl implements ClausesDAO {
         }
 
         return clausesList;
+    }
+
+    @Override
+    public boolean deleteClausesByOrderId(int orderId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(DELETE_CLAUSES_BY_ID);
+            preparedStatement.setInt(1, orderId);
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(null, preparedStatement, connection);
+        }
+
+        return false;
     }
 }

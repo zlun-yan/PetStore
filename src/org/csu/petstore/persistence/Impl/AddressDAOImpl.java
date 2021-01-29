@@ -23,6 +23,8 @@ public class AddressDAOImpl implements AddressDAO {
     private static final String GET_ADDRESS_BY_ID =
             "SELECT ID, USER_ID, PROVINCE, CITY, DISTRICT, ADDRESS_CODE, DETAILS, NAME, PHONE " +
                     "FROM ADDRESS WHERE ID = ?";
+    private static final String DELETE_ADDRESS_BY_ID =
+            "DELETE FROM ADDRESS WHERE ID = ?";
 
     @Override
     public int insertAddress(Address address) {
@@ -92,6 +94,26 @@ public class AddressDAOImpl implements AddressDAO {
             DBUtil.close(resultSet, preparedStatement, connection);
         }
         return null;
+    }
+
+    @Override
+    public boolean deleteAddressById(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(DELETE_ADDRESS_BY_ID);
+            preparedStatement.setInt(1, id);
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(null, preparedStatement, connection);
+        }
+
+        return false;
     }
 
     public List<Address> getAddressByUserId(int userId) {

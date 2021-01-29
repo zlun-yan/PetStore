@@ -122,4 +122,19 @@ public class CartService {
 
         return true;
     }
+
+    public boolean deleteCartItemById(int id, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        List<Cart> cartList = user.getCartList();
+        for (int i = 0; i < cartList.size(); i++) {
+            if (cartList.get(i).getId() == id) {
+                cartList.remove(i);
+                break;
+            }
+        }
+        user.setCartList(cartList);
+        session.setAttribute("user", user);
+
+        return cartDAO.deleteCartItemById(id);
+    }
 }

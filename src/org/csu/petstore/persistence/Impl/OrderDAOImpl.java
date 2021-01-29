@@ -28,6 +28,8 @@ public class OrderDAOImpl implements OrderDAO {
     private static final String GET_ORDER_BY_ID =
             "SELECT ID, USER_ID, STATE, ADDR_ID, TOTPRICE, START_DATE, END_DATE " +
                     "FROM ORDERS WHERE ID = ?";
+    private static final String DELETE_ORDER_BY_ID =
+            "DELETE FROM ORDERS WHERE ID = ?";
 
     @Override
     public int insertOrder(Order order) {
@@ -170,5 +172,25 @@ public class OrderDAOImpl implements OrderDAO {
             DBUtil.close(resultSet, preparedStatement, connection);
         }
         return null;
+    }
+
+    @Override
+    public boolean deleteOrderById(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(DELETE_ORDER_BY_ID);
+            preparedStatement.setInt(1, id);
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            DBUtil.close(null, preparedStatement, connection);
+        }
+
+        return false;
     }
 }

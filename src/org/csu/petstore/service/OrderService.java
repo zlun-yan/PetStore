@@ -78,4 +78,22 @@ public class OrderService {
         order.setClausesList(clausesDAO.getClausesListByOrderId(id));
         return order;
     }
+
+    public boolean deleteOrderById(int id, HttpSession session) {
+        clausesDAO.deleteClausesByOrderId(id);
+        orderDAO.deleteOrderById(id);
+
+        User user = (User) session.getAttribute("user");
+        List<Order> orderList = user.getOrderList();
+        for (int i = 0; i < orderList.size(); i++) {
+            if (orderList.get(i).getId() == id) {
+                orderList.remove(i);
+                break;
+            }
+        }
+        user.setOrderList(orderList);
+        session.setAttribute("user", user);
+
+        return true;
+    }
 }

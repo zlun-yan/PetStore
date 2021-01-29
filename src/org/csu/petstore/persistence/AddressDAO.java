@@ -10,4 +10,6 @@ public interface AddressDAO {
     int insertAddress(Address address);
 
     Address getAddressById(int id);
+
+    boolean deleteAddressById(int id);
 }

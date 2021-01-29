@@ -8,4 +8,6 @@ public interface ClausesDAO {
     boolean insertClauses(Clauses clauses);
 
     List<Clauses> getClausesListByOrderId(int orderId);
+
+    boolean deleteClausesByOrderId(int orderId);
 }

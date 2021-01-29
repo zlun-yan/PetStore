@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var empty = parseInt($("#zlun-js-cart-empty").val());
 
-    if (empty == 0) {
+    if (empty != 0) {
         var boxHolder = $("#visible-zlun-box");
         var visibleBottom = window.scrollY + document.documentElement.clientHeight;
         var visibleTop = window.scrollY;
@@ -399,6 +399,48 @@ $(document).ready(function () {
             $("body").append(temp);
             temp.submit();
             temp.remove();
+        })
+
+        $(".zlun-cart-delete").on("click", function () {
+            var id = this.id;
+            id = id.split("_");
+            id = id[1];
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "deleteCart",
+                timeout: 2000,
+                data: {
+                    cartId: id
+                },
+                success: function () {
+                    $("#item_" + id).remove();
+                    empty--;
+                    if (empty == 0) {
+                        $("#zlun-js-cart-body").empty();
+                        $("#zlun-js-cart-body").append($('<div m-3 id="zlun-js-cart-body">\n' +
+                            '            <div class="my-3">\n' +
+                            '                <div class="box-shadow-medium p-3">\n' +
+                            '                    <strong>Cart</strong>\n' +
+                            '                </div>\n' +
+                            '\n' +
+                            '                <div class="blankslate">\n' +
+                            '                    <img src="https://ghicons.github.com/assets/images/blue/png/Pull%20request.png" alt="" class="mb-3" />\n' +
+                            '                    <h3 class="mb-1">Your cart don’t seem to have any items.</h3>\n' +
+                            '                    <p>Come and find a partner to take home.</p>\n' +
+                            '                    <button class="btn btn-primary my-3" type="button" id="zlun-js-cart-explore">Explore</button>\n' +
+                            '                </div>\n' +
+                            '            </div>\n' +
+                            '        </div>'));
+
+                        $("#zlun-js-cart-explore").on("click", function () {
+                            console.log("cart-explore");
+                            window.location.href = "explore?need=dog";
+                        })
+                    }
+                }
+            });
         })
     }
     else {
