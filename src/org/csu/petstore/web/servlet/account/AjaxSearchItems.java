@@ -1,8 +1,9 @@
 package org.csu.petstore.web.servlet.account;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.csu.petstore.persistence.Impl.UserDAOImpl;
-import org.csu.petstore.persistence.UserDAO;
+import org.csu.petstore.domain.Item;
+import org.csu.petstore.service.ItemService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,23 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/changeProfile")
-public class ChangeUserNameAndEmail extends HttpServlet {
-    private UserDAO userDAO;
+@WebServlet("/ajaxSearchItems")
+public class AjaxSearchItems extends HttpServlet {
+    private ItemService itemService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userId = Integer.parseInt(req.getParameter("userId"));
-        String username = req.getParameter("username");
-        String email = req.getParameter("email");
+        itemService = new ItemService();
+        String keyword = req.getParameter("keyword");
 
-        userDAO = new UserDAOImpl();
-        userDAO.updateUsernameById(userId, username);
-        userDAO.updateEmailById(userId, email);
+        List<Item> itemList = itemService.searchItemList(keyword);
+        String info = JSON.toJSONString(itemList);
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("state", "success");
+        jsonObject.put("info", info);
         resp.getWriter().print(jsonObject.toJSONString());
     }
 }

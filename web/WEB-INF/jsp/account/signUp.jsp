@@ -10,9 +10,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ include file="../common/IncludeTop.jsp"%>
+<link href="static/css/drag.css" rel="stylesheet">
+
 <div class="p-responsive mt-4 mt-md-8">
     <div class="mb-4 mb-md-8 container-md">
-        <div class="text-mono text-center text-gray-light text-normal mb-3">Join JPetStore</div>
+        <div class="text-mono text-center text-gray-light text-normal mb-3">Join PetStore</div>
         <h1 class="d-none d-md-block mt-0 mb-3 text-center h00-mktg lh-condensed-ultra ">Create your account</h1>
     </div>
 
@@ -33,61 +35,107 @@
         <div class="mb-4">
             <form id="signup-form" action="" accept-charset="UTF-8" method="post"
                   class="setup-form js-signup-form js-octocaptcha-parent">
-                <dl class="form-group my-3 required">
+
+                <dl class="form-group my-3 required" id="zlun-js-sign-up-username">
                     <dt class="input-label">
-                        <label name="user[login]" autocapitalize="off" autofocus="autofocus" required="required"
-                               for="user_login">
-                            Username
-                        </label>
+                        <div class="form-group-header">
+                            <label name="user[login]" autocapitalize="off" autofocus="autofocus" required="required"
+                                   for="user_login">
+                                Username
+                            </label>
+                        </div>
                     </dt>
                     <dd>
-                        <input name="user[login]" autocapitalize="off" autofocus="autofocus" required="required"
-                               class="form-control input width-full" type="text" id="user_login" />
+                        <div class="form-group-body">
+                            <input name="user[login]" autocapitalize="off" autofocus="autofocus" required="required"
+                                   class="form-control input width-full" type="text" id="user_login" />
+                        </div>
+
+                        <p class="zlun-note-sign-up note d-none" id="zlun-js-username-input-validation">
+                        </p>
                     </dd>
                 </dl>
 
-                <dl class="form-group my-3 required">
+                <dl class="form-group my-3 required" id="zlun-js-sign-up-email">
                     <dt class="input-label">
-                        <label name="user[email]" autocapitalize="off" required="required" for="user_email">Email address</label>
+                        <div class="form-group-header">
+                            <label name="user[email]" autocapitalize="off" required="required" for="user_email">
+                                Email address
+                            </label>
+                        </div>
                     </dt>
                     <dd>
-                        <input name="user[email]" autocapitalize="off" required="required"
-                               class="form-control input width-full" value="" type="text" id="user_email" />
+                        <div class="form-group-body">
+                            <input name="user[email]" autocapitalize="off" required="required"
+                                   class="form-control input width-full" value="" type="text" id="user_email" />
+                        </div>
+
+                        <p class="zlun-note-sign-up note d-none" id="zlun-js-email-input-validation">
+                        </p>
                     </dd>
                 </dl>
 
-                <dl class="form-group mt-3 mb-2 required">
+                <dl class="form-group mt-3 mb-2 required" id="zlun-js-sign-up-password">
                     <dt class="input-label">
-                        <label name="user[password]" required="required" autocomplete="new-password" for="user_password">
-                            Password
-                        </label>
+                        <div class="form-group-header">
+                            <label name="user[password]" required="required" autocomplete="new-password" for="user_password">
+                                Password
+                            </label>
+                        </div>
                     </dt>
                     <dd>
-                        <input name="user[password]" required="required" class="form-control input width-full"
-                               autocomplete="new-password" type="password" id="user_password" />
+                        <div class="form-group-body">
+                            <input name="user[password]" required="required" class="form-control input width-full"
+                                   autocomplete="new-password" type="password" id="user_password" />
+                        </div>
+                    </dd>
+
+                    <p class="note mb-3">
+                        Make sure it&#39;s
+                        <span >at least 15 characters</span>
+                        OR
+                        <span >at least 8 characters</span>
+                        <span >including a number</span>
+                        <span >and a lowercase letter</span>.
+                        <a href="" class="tooltipped tooltipped-s" aria-label="Learn more about strong passwords">Learn more</a>.
+                    </p>
+                </dl>
+
+                <dl class="form-group mt-3 mb-2 required" id="zlun-js-sign-up-confirm">
+                    <dt class="input-label">
+                        <div class="form-group-header">
+                            <label name="user[confirm]" required="required" for="user_confirm">
+                                Confirm password
+                            </label>
+                        </div>
+                    </dt>
+                    <dd>
+                        <div class="form-group-body">
+                            <input name="user[confirm]" required="required" class="form-control input width-full"
+                                   type="password" id="user_confirm" disabled="disabled"/>
+                        </div>
                     </dd>
                 </dl>
 
-                <p class="note mb-3">
-                    Make sure it&#39;s
-                    <span >at least 15 characters</span>
-                    OR
-                    <span >at least 8 characters</span>
-                    <span >including a number</span>
-                    <span >and a lowercase letter</span>.
-                    <a href="" class="tooltipped tooltipped-s" aria-label="Learn more about strong passwords">Learn more</a>.
-                </p>
 
-<%--                <div class="my-3" >--%>
-<%--                    <h2 class="f4 mb-3">Verify your account</h2>--%>
-<%--                </div>--%>
+
+                <div class="my-3" >
+                    <h2 class="f4 mb-3">Verify your account</h2>
+                    <div id="drag">
+                        <div class="drag_bg"></div>
+                        <div class="drag_text slidetounlock" onselectstart="return false;" unselectable="on">
+                            Please hold down the slider and drag to the far right
+                        </div>
+                        <div class="handler handler_bg"></div>
+                    </div>
+                </div>
 
                 <div class="my-3">
                     <button
                             class="btn-mktg signup-btn  js-octocaptcha-form-submit width-full"
                             type="submit"
                             height="64px"
-<%--                            disabled--%>
+                            disabled="disabled"
                             id="signup_button">
                         Create account
                     </button>
@@ -96,8 +144,8 @@
                 <p class="my-3 f6">
                     By creating an account, you agree to the
                     <a href="" target="_blank">Terms of Service</a>.
-                    For more information about JPetStore's privacy practices, see the
-                    <a href="" target="_blank">JPetStore Privacy Statement</a>.
+                    For more information about PetStore's privacy practices, see the
+                    <a href="" target="_blank">PetStore Privacy Statement</a>.
                     We'll occasionally send you account-related emails.
                 </p>
             </form>

@@ -4,7 +4,7 @@ $(document).ready(function () {
 
         var login = $("#user_email").val();
 
-        var reg = /^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/; //正则表达式
+        var reg = /^[A-Za-zd0-9]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/; //正则表达式
         if (!reg.test(login)) {
             $("#errorBox").show();
             $("#info").html("That address is not a <a href=''>verified primary email</a> or is not associated with a <a href=''>personal user account</a>. Organization <a href=''>billing emails</a> are only for notifications\n");

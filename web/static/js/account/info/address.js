@@ -100,9 +100,17 @@ $(document).ready(function () {
         }
 
         var name = $("input#receiver_name").val();
+        console.log(name.length);
+        console.log(name.length > 15 || name.length < 2)
         if (name == "") {
             $("#errorBox").show();
             $("#info").text("Please enter the receiver`s name");
+            $("input#receiver_name").focus();
+            return;
+        }
+        if (name.length > 15 || name.length < 2) {
+            $("#errorBox").show();
+            $("#info").text("The length of the receiver's name should be between 2-25 Chinese characters");
             $("input#receiver_name").focus();
             return;
         }
@@ -111,6 +119,12 @@ $(document).ready(function () {
         if (phone == "") {
             $("#errorBox").show();
             $("#info").text("Please enter the receiver`s phone number");
+            $("input#receiver_phone").focus();
+            return;
+        }
+        if (phone.length != 11) {
+            $("#errorBox").show();
+            $("#info").text("Please input 11 digit mobile phone number");
             $("input#receiver_phone").focus();
             return;
         }

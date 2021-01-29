@@ -22,6 +22,6 @@ public class Deliver extends HttpServlet {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("state", orderService.deliver(orderId, req.getSession()));
 
-        resp.getWriter().print(jsonObject);
+        resp.getWriter().print(jsonObject.toJSONString());
     }
 }

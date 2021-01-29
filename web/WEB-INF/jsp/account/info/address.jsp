@@ -82,7 +82,7 @@
         <div class="mb-3">
             <label name="receiver[phone]" for="receiver_phone" style="display: inline-block;width: 130px">Receiver phone:</label>
             <input class="form-control" type="text" style="display: inline-block;width: 447px"
-                   placeholder="No more than 25 characters in length" id="receiver_phone"/>
+                   placeholder="Please input 11 digit mobile phone number" id="receiver_phone"/>
         </div>
 
         <div class="mb-3">

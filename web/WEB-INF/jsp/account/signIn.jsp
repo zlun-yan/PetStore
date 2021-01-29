@@ -28,7 +28,7 @@
             </svg>
         </a>
         <div class="auth-form-header p-0">
-            <h1>Sign in to JPetStore</h1>
+            <h1>Sign in to PetStore</h1>
         </div>
     </div>
 
@@ -91,7 +91,7 @@
             </div>
             <div class="Box-row">
                 <p>
-                    New to JPetStore?
+                    New to PetStore?
                     <a href="signUp">Create an account</a>.
                 </p>
             </div>

@@ -35,6 +35,6 @@ public class Checkout extends HttpServlet {
             jsonObject.put("state", "fail");
         }
 
-        resp.getWriter().print(jsonObject);
+        resp.getWriter().print(jsonObject.toJSONString());
     }
 }

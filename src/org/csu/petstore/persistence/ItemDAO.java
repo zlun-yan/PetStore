@@ -8,4 +8,6 @@ public interface ItemDAO {
     List<Item> getItemByTypeId(int typeId);
 
     Item getItemByItemId(int itemId);
+
+    List<Item> getItemListLikeItemName(String keyword);
 }

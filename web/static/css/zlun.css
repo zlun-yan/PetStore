@@ -44,6 +44,72 @@ body {
     background-color: #f1f8ff !important;
 }
 
+.zlun-autocomplete-results {
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    max-height: 20em;
+    overflow-y: auto;
+    font-size: 13px;
+    list-style: none;
+    background: #fff;
+    border: 1px #e1e4e8 solid;
+    border-radius: 6px;
+    box-shadow: 0 3px 6px rgb(149 157 165 / 15%);
+}
+
+.zlun-autocomplete-item {
+    display: block;
+    width: 100%;
+    padding: 4px 8px;
+    overflow: hidden;
+    font-weight: 600;
+    color: #24292e;
+    text-align: left;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: #fff;
+    border: 0;
+}
+
+.zlun-autocomplete-item:hover,
+.zlun-autocomplete-item.selected,
+.zlun-autocomplete-item[aria-selected=true],
+.zlun-autocomplete-item.navigation-focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #0366d6;
+}
+
+.zlun-autocomplete-item:hover *,
+.zlun-autocomplete-item.selected *,
+.zlun-autocomplete-item[aria-selected=true] *,
+.zlun-autocomplete-item.navigation-focus * {
+    color: inherit;
+}
+
+.zlun-autocomplete-item:hover div,
+.zlun-autocomplete-item.selected div,
+.zlun-autocomplete-item[aria-selected=true] div,
+.zlun-autocomplete-item.navigation-focus div {
+    display: inline-block !important;
+    color: inherit;
+}
+
+.zlun-note-sign-up {
+    right:487.6px
+}
+
+.form-group.successed .form-control {
+    border-color: #34d058
+}
+
+.form-group.successed label {
+    color: #34d058
+}
+
 #search_div {
     max-width: 272px;
     width: 100%;
