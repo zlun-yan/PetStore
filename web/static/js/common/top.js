@@ -1,6 +1,8 @@
 $(document).ready(function () {
+    var input_blur = null;
 
     $("#search_input").focus(function () {
+        clearTimeout(input_blur);
         $(this).addClass("input-block");
         $(this).removeClass("input-dark");
         $("#search_div").attr("style", "max-width: 544px");
@@ -70,43 +72,6 @@ $(document).ready(function () {
         });
     })
 
-    $("#search_input").blur(function () {
-        $(this).removeClass("input-block");
-        $(this).addClass("input-dark");
-        $("#search_div").removeAttr("style", "max-width: 544px");
-        $("#search_list").addClass("d-none");
-
-        $("#zlun-js-search-ul").empty();
-    })
-
-    $("#sign_info").click(function () {
-        window.location.href="info?need=profile";
-    })
-
-    $("#profile").click(function () {
-        window.location.href="info?need=profile";
-    })
-
-    $("#address").click(function () {
-        window.location.href="info?need=address";
-    })
-
-    $("#orders").click(function () {
-        window.location.href="info?need=orders";
-    })
-
-    $("#cart").click(function () {
-        window.location.href="cart";
-    })
-
-    $("#zlun-js-top-signin").on("click", function () {
-        window.location.href = "signIn";
-    })
-
-    $("#zlun-js-top-signup").on("click", function () {
-        window.location.href = "signUp";
-    })
-
     $("#search_input").bind("input propertychange", function () {
         var keyword = $(this).val();
 
@@ -170,6 +135,45 @@ $(document).ready(function () {
 
             }
         });
+    })
+
+    $("#search_input").blur(function () {
+        $("#search_div").removeAttr("style", "max-width: 544px");
+
+        input_blur = setTimeout(function () {
+            $("#search_input").removeClass("input-block");
+            $("#search_input").addClass("input-dark");
+            $("#search_list").addClass("d-none");
+            $("#zlun-js-search-ul").empty();
+        }, 200);
+    })
+
+    $("#sign_info").click(function () {
+        window.location.href="info?need=profile";
+    })
+
+    $("#profile").click(function () {
+        window.location.href="info?need=profile";
+    })
+
+    $("#address").click(function () {
+        window.location.href="info?need=address";
+    })
+
+    $("#orders").click(function () {
+        window.location.href="info?need=orders";
+    })
+
+    $("#cart").click(function () {
+        window.location.href="cart";
+    })
+
+    $("#zlun-js-top-signin").on("click", function () {
+        window.location.href = "signIn";
+    })
+
+    $("#zlun-js-top-signup").on("click", function () {
+        window.location.href = "signUp";
     })
 
     $(".zlun-js-top-search").bind("click", function () {

@@ -43,45 +43,13 @@
                 <a href="#" class="Header-link">About</a>
             </div>
 
-            <div class="Header-item" id="search_div">
+            <div class="Header-item" id="search_div" tabindex="1">
                 <div class="position-relative" >
                     <form method="post" action="searchItem" id="zlun-js-search-form">
                         <label>
-                            <input type="search" class="form-control input-dark" id="search_input" aria-expanded="true" name="keyword"/>
+                            <input type="search" autocomplete="off" class="form-control input-dark" id="search_input" aria-expanded="true" name="keyword"/>
                             <div class="d-none" id="search_list">
                                 <ul class="zlun-autocomplete-results" id="zlun-js-search-ul">
-<%--                                    <li class="zlun-autocomplete-item" style="pointer-events: none;">--%>
-<%--                                        <div class="m-5 text-center anim-pulse">--%>
-<%--                                            <svg height="24" class="octicon octicon-mark-github " viewBox="0 0 24 24" version="1.1" width="24" aria-hidden="true">--%>
-<%--                                                <path d="M7.75 11c-.69 0-1.25.56-1.25 1.25v1.5a1.25 1.25 0 102.5 0v-1.5C9 11.56 8.44 11 7.75 11zm1.27 4.5a.469.469 0 01.48-.5h5a.47.47 0 01.48.5c-.116 1.316-.759 2.5-2.98 2.5s-2.864-1.184-2.98-2.5zm7.23-4.5c-.69 0-1.25.56-1.25 1.25v1.5a1.25 1.25 0 102.5 0v-1.5c0-.69-.56-1.25-1.25-1.25z"></path><path fill-rule="evenodd" d="M21.255 3.82a1.725 1.725 0 00-2.141-1.195c-.557.16-1.406.44-2.264.866-.78.386-1.647.93-2.293 1.677A18.442 18.442 0 0012 5c-.93 0-1.784.059-2.569.17-.645-.74-1.505-1.28-2.28-1.664a13.876 13.876 0 00-2.265-.866 1.725 1.725 0 00-2.141 1.196 23.645 23.645 0 00-.69 3.292c-.125.97-.191 2.07-.066 3.112C1.254 11.882 1 13.734 1 15.527 1 19.915 3.13 23 12 23c8.87 0 11-3.053 11-7.473 0-1.794-.255-3.647-.99-5.29.127-1.046.06-2.15-.066-3.125a23.652 23.652 0 00-.689-3.292zM20.5 14c.5 3.5-1.5 6.5-8.5 6.5s-9-3-8.5-6.5c.583-4 3-6 8.5-6s7.928 2 8.5 6z"></path>--%>
-<%--                                            </svg>--%>
-<%--                                            <h3><span>Loading</span><span class="AnimatedEllipsis"></span></h3>--%>
-<%--                                        </div>--%>
-<%--                                    </li>--%>
-
-<%--                                    <li class="zlun-autocomplete-item zlun-js-top-search" aria-selected="true">--%>
-<%--                                        <a href="index" class="no-underline ">--%>
-<%--                                            Option 1--%>
-<%--                                            <div class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-inline-block float-right text-gray-dark">--%>
-<%--                                            <span class="">--%>
-<%--                                                All Petsotre--%>
-<%--                                            </span>--%>
-<%--                                                <span class="d-inline-block ml-1 v-align-middle">↵</span>--%>
-<%--                                            </div>--%>
-<%--                                        </a>--%>
-<%--                                    </li>--%>
-
-<%--                                    <li class="zlun-autocomplete-item zlun-js-top-search">--%>
-<%--                                        <a href="explore?need=dog" class="no-underline ">--%>
-<%--                                            Option 2--%>
-<%--                                            <div class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-inline-block float-right text-gray-dark">--%>
-<%--                                            <span class="">--%>
-<%--                                                Jump to--%>
-<%--                                            </span>--%>
-<%--                                                <span class="d-inline-block ml-1 v-align-middle">↵</span>--%>
-<%--                                            </div>--%>
-<%--                                        </a>--%>
-<%--                                    </li>--%>
                                 </ul>
                             </div>
                         </label>
