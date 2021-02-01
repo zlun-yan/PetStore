@@ -11,7 +11,14 @@
 
 <%@ include file="../common/IncludeTop.jsp"%>
 
-
+${requestScope.item.id}
+${requestScope.item.name}
+${requestScope.item.details}
+${requestScope.item.num}
+${requestScope.item.price}
+${requestScope.item.picUrl}
+${requestScope.item.sale}
+${requestScope.item.typeId}
 
 <script src="static/js/products/item.js"></script>
 <%@ include file="../common/IncludeBottom.jsp"%>

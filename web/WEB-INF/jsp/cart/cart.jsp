@@ -75,7 +75,9 @@
                                     &nbsp;</label>
                             </div>
                             <div class="p-2 flex-self-center" style="width: 96px">
-                                <img src="${cart.item.picUrl}" class="zlun-img">
+                                <a href="itemInfo?itemId=${cart.item.id}">
+                                    <img src="${cart.item.picUrl}" class="zlun-img">
+                                </a>
                             </div>
                             <div class="p-3 flex-self-center">${cart.item.name}</div>
                             <div class="p-5 flex-1">&nbsp;</div>
@@ -121,8 +123,6 @@
                             </div>
                         </div>
                     </c:forEach>
-
-                    <input type="hidden" value="${sessionScope.user.cartList.size()}" id="cartNum">
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var empty = parseInt($("#zlun-js-cart-empty").val());
+    var empty = parseInt($("#zlun-js-cart-empty").val());  // 代表条目信息  购物车中有几个条目
 
     if (empty != 0) {
         var boxHolder = $("#visible-zlun-box");
@@ -25,10 +25,9 @@ $(document).ready(function () {
             }
         })
 
-        var checked = 0;
-        var subTot = 0;
-        var itemNum = 0;
-        var cartNum = $("#cartNum").val();
+        var checked = 0;  // 选中的条目数量
+        var subTot = 0;  // 选中商品的总价
+        var itemNum = 0;  // 选中商品的数量
         $("input[type=checkbox]").each(function () {
             var temp = this.id;
 
@@ -60,7 +59,7 @@ $(document).ready(function () {
             $("#checkout").attr("disabled", "true");
         }
 
-        if (checked != 0 && checked == cartNum) {
+        if (checked != 0 && checked == empty) {
             $("#all_select").prop("checked", true);
         }
         else {
@@ -174,7 +173,7 @@ $(document).ready(function () {
                     });
                 }
 
-                if (checked != 0 && checked == cartNum) {
+                if (checked != 0 && checked == empty) {
                     $("#all_select").prop("checked", true);
                 }
                 else {
@@ -238,7 +237,7 @@ $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "cartNumChange",
+                url: "emptyChange",
                 timeout: 2000,
                 data: {
                     id: id[1],
@@ -415,6 +414,12 @@ $(document).ready(function () {
                     cartId: id
                 },
                 success: function () {
+                    if ($("#check_" + id).prop('checked')) {
+                        subTot -= parseFloat($("#tot_" + id).text());
+                        itemNum -= parseInt($("#num_" + id).val());
+                        checked--;
+                    }
+
                     $("#item_" + id).remove();
                     empty--;
                     if (empty == 0) {
@@ -438,6 +443,30 @@ $(document).ready(function () {
                             console.log("cart-explore");
                             window.location.href = "explore?need=dog";
                         })
+                    }
+                    else {
+                        if (itemNum > 1) {
+                            $("#order_num").text(itemNum + " items");
+                        }
+                        else {
+                            $("#order_num").text(itemNum + " item");
+                        }
+
+                        $("#order_price").text(subTot);
+
+                        if (checked >= 1) {
+                            $("#checkout").removeAttr("disabled");
+                        }
+                        else {
+                            $("#checkout").attr("disabled", "true");
+                        }
+
+                        if (checked != 0 && checked == empty) {
+                            $("#all_select").prop("checked", true);
+                        }
+                        else {
+                            $("#all_select").prop("checked", false);
+                        }
                     }
                 }
             });

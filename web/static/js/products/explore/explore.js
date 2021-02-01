@@ -108,7 +108,7 @@ $(document).ready(function () {
         var id = this.id;
         id = id.split('_');
         if (id[0] == 'info') {
-            console.log('info ' + id[1]);
+            window.location.href = "itemInfo?itemId=" + id[1];
         }
 
     })

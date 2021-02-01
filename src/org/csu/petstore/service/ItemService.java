@@ -16,4 +16,8 @@ public class ItemService {
     public List<Item> searchItemList(String keyword) {
         return itemDAO.getItemListLikeItemName("%" + keyword.toLowerCase() + "%");
     }
+
+    public Item getItemByItemId(int id) {
+        return itemDAO.getItemByItemId(id);
+    }
 }
