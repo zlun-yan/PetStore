@@ -36,7 +36,7 @@ $(document).ready(function () {
                 var itemUl = $("#zlun-js-search-ul");
                 itemUl.empty();
                 var load = $('<li class="zlun-autocomplete-item zlun-js-top-search" aria-selected="true">\n' +
-                    '                                        <a href="searchItem?keyword=' + keyword + '" class="no-underline ">\n' +
+                    '                                        <a href="" class="no-underline ">\n' +
                     '                                            ' + keyword + '\n' +
                     '                                            <div class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-inline-block float-right text-gray-dark">\n' +
                     '                                            <span class="">\n' +
@@ -101,7 +101,7 @@ $(document).ready(function () {
                 var itemUl = $("#zlun-js-search-ul");
                 itemUl.empty();
                 var load = $('<li class="zlun-autocomplete-item zlun-js-top-search" aria-selected="true">\n' +
-                    '                                        <a href="index" class="no-underline ">\n' +
+                    '                                        <a href="" class="no-underline ">\n' +
                     '                                            ' + keyword + '\n' +
                     '                                            <div class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-inline-block float-right text-gray-dark">\n' +
                     '                                            <span class="">\n' +
