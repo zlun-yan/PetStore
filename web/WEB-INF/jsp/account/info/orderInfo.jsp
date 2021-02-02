@@ -43,9 +43,7 @@
         <c:forEach items="${requestScope.order.clausesList}" var="item">
             <div class="border d-flex" style="height: 96px">
                 <div class="p-2 flex-self-center" style="width: 96px">
-                    <a href="itemInfo?itemId=${item.id}">
-                        <img src="${item.itemPicURL}" class="zlun-img">
-                    </a>
+                    <img src="${item.itemPicURL}" class="zlun-img">
                 </div>
                 <div class="p-3 flex-self-center">${item.itemName}</div>
 

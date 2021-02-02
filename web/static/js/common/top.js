@@ -152,6 +152,17 @@ $(document).ready(function () {
         window.location.href="info?need=profile";
     })
 
+    $("#sign_out").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "signOut",
+            timeout: 2000,
+            success: function () {
+                window.location.reload();
+            }
+        });
+    })
+
     $("#profile").click(function () {
         window.location.href="info?need=profile";
     })
