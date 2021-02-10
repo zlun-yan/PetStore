@@ -158,7 +158,7 @@ $(document).ready(function () {
             url: "signOut",
             timeout: 2000,
             success: function () {
-                window.location.reload();
+                window.location.href = "index";
             }
         });
     })

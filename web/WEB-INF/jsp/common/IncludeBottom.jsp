@@ -10,7 +10,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 </div>
-        <div class="position-relative js-header-wrapper zlun-footer mt-6">
+        <div class="position-relative zlun-footer mt-6">
             <footer class="footer">
                 <div class="bg-gray-light">
                     <div class="container-xl p-responsive f6 py-4 d-sm-flex flex-justify-between flex-row-reverse flex-items-center">
